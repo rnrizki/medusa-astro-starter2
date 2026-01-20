@@ -504,7 +504,7 @@
         "Allow user to select shipping method",
         "Update cart with selected shipping method"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 33,

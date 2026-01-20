@@ -1,4 +1,31 @@
 
+## 2026-01-20 - Feature 32: Checkout form collects shipping method
+
+**Status:** Complete
+
+**Work done:**
+- Created `src/components/react/ShippingMethodSelector.tsx` Preact island.
+- Fetches shipping options for the cart via `listShippingOptions` SDK function.
+- Displays available shipping methods with names and prices.
+- Radio button selection for choosing shipping method.
+- Updates cart with selected shipping method via `addShippingMethod` SDK.
+- Loading state while fetching options and saving selection.
+- Error handling for API failures with retry option.
+- Empty state when no shipping options available.
+- Visual feedback when shipping method is selected (checkmark, highlighted border).
+- Integrated into CheckoutForm - shows after shipping address is saved.
+
+**Verification:**
+- `pnpm run lint` - Success (0 errors, 0 warnings).
+- `pnpm run test` - No test tasks configured (passes vacuously).
+
+**Notes for next person:**
+- Feature 32 (Shipping method selection) is complete.
+- Feature 33 (Payment provider integration) is the next logical checkout step (medium priority).
+- Feature 34 (Order confirmation page) follows.
+- Feature 46 (Open Graph meta tags) is a good quick SEO win (high priority).
+- Feature 12 (Footer) is still pending (medium priority).
+
 ## 2026-01-20 - Feature 41: Total JavaScript bundle under 50KB gzipped
 
 **Status:** Complete

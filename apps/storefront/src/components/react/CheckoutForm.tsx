@@ -2,6 +2,7 @@ import { useState } from "preact/hooks";
 import { useStore } from "@nanostores/preact";
 import { $cart, setCart } from "@/lib/stores/cart";
 import { updateCart } from "@/lib/medusa";
+import ShippingMethodSelector from "./ShippingMethodSelector";
 
 interface FormData {
   email: string;
@@ -137,46 +138,47 @@ export default function CheckoutForm() {
 
   if (isSubmitted) {
     return (
-      <div className="rounded-lg border border-green-200 bg-green-50 p-6">
-        <div className="flex items-center gap-2">
-          <svg
-            className="h-5 w-5 text-green-600"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M5 13l4 4L19 7"
-            />
-          </svg>
-          <h3 className="font-medium text-green-800">
-            Shipping information saved
-          </h3>
-        </div>
-        <p className="mt-2 text-sm text-green-700">
-          {formData.firstName} {formData.lastName}
-          <br />
-          {formData.address}
-          {formData.apartment && `, ${formData.apartment}`}
-          <br />
-          {formData.city}, {formData.postalCode}
-        </p>
-        <button
-          type="button"
-          onClick={() => setIsSubmitted(false)}
-          className="mt-4 text-sm font-medium text-green-700 hover:text-green-600"
-        >
-          Edit shipping address
-        </button>
-        <div className="mt-6 border-t border-green-200 pt-4">
-          <p className="text-sm text-gray-600">
-            Shipping method selection coming soon (Feature 32).
+      <>
+        <div className="rounded-lg border border-green-200 bg-green-50 p-6">
+          <div className="flex items-center gap-2">
+            <svg
+              className="h-5 w-5 text-green-600"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+            <h3 className="font-medium text-green-800">
+              Shipping information saved
+            </h3>
+          </div>
+          <p className="mt-2 text-sm text-green-700">
+            {formData.firstName} {formData.lastName}
+            <br />
+            {formData.address}
+            {formData.apartment && `, ${formData.apartment}`}
+            <br />
+            {formData.city}, {formData.postalCode}
           </p>
+          <button
+            type="button"
+            onClick={() => setIsSubmitted(false)}
+            className="mt-4 text-sm font-medium text-green-700 hover:text-green-600"
+          >
+            Edit shipping address
+          </button>
         </div>
-      </div>
+
+        <div className="mt-6">
+          <ShippingMethodSelector />
+        </div>
+      </>
     );
   }
 

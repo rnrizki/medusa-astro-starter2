@@ -660,7 +660,7 @@
         "Reserve space for dynamic content",
         "Verify CLS under 0.05 in Lighthouse"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 45,

@@ -291,3 +291,26 @@
 - Feature 18 (Multiple variants) is HIGH priority - affects Add to Cart flow.
 - Feature 30 (Checkout) is HIGH priority - missing page.
 - Feature 12 (Footer) is MEDIUM priority - missing layout element.
+
+## 2026-01-20 - Feature 44: CLS prevented by setting explicit image dimensions
+
+**Status:** Complete
+
+**Work done:**
+- Verified usage of explicit `width` and `height` attributes on all images in:
+  - `src/components/astro/ProductCard.astro`
+  - `src/pages/products/[handle].astro`
+  - `src/pages/collections/index.astro`
+- Added missing `width` and `height` attributes to cart thumbnail images in `src/components/react/Cart.tsx` to prevent layout shifts.
+- Verified that responsive images use `aspect-ratio` CSS classes (e.g., `aspect-square`, `aspect-[16/9]`).
+- Updated PRD to mark Feature 44 as passing.
+
+**Verification:**
+- `pnpm run lint` - 0 errors.
+- `pnpm run test` - Passed.
+
+**Notes for next person:**
+- Feature 44 is complete.
+- Feature 41 (JS Bundle Size) is the only remaining CRITICAL priority feature that is failing. It needs verification.
+- Feature 30 (Checkout page) is HIGH priority and a major functional gap.
+- Feature 18 (Variants) is HIGH priority and functional gap.

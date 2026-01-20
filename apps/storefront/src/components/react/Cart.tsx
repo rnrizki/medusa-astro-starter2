@@ -148,6 +148,8 @@ export default function Cart() {
                                   <img
                                     src={item.thumbnail}
                                     alt={item.title}
+                                    width={96}
+                                    height={96}
                                     className="h-full w-full object-cover object-center"
                                   />
                                 ) : (

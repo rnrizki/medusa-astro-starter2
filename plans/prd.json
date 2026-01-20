@@ -354,7 +354,7 @@
         "Display collection title and description",
         "Show products grid using ProductCard"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 22,

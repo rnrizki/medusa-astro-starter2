@@ -164,3 +164,29 @@
 - Feature 29 (Cart persistence) is HIGH priority - cart is lost on page refresh.
 - Feature 18 (Multiple variants) is HIGH priority.
 - The `.env` file still has dummy keys. For full e2e testing, valid Medusa keys are needed.
+
+## 2026-01-20 - Feature 21: Dynamic collection pages generated at build time
+
+**Status:** Complete
+
+**Work done:**
+- Created `src/pages/collections/[handle].astro`
+- Implemented `getStaticPaths` to generate all collection pages at build time
+- Fetches products belonging to collection using `getProductsByCollection`
+- Displays collection title and description (from metadata)
+- Shows products in responsive 1/2/3/4 column grid using ProductCard
+- Breadcrumb navigation (Home > Collections > [Collection Name])
+- Product count display
+- Graceful empty state if collection has no products
+- 404 redirect if collection not found
+
+**Verification:**
+- `pnpm run lint` - 0 errors, 0 warnings, 0 hints
+- `pnpm run test` - No tests configured (passes)
+
+**Notes for next person:**
+- Feature 21 is complete. Collections flow now works end-to-end (listing -> detail).
+- Feature 29 (Cart persistence) is HIGH priority - cart is lost on page refresh.
+- Feature 18 (Multiple variants) is HIGH priority - only first variant used currently.
+- Feature 12 (Footer) is MEDIUM priority - layout is incomplete without footer.
+- The `.env` file still has dummy keys. For full e2e testing, valid Medusa keys are needed.

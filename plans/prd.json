@@ -697,7 +697,7 @@
         "Configure site URL in astro.config.mjs",
         "Verify sitemap.xml generated in build output"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 48,

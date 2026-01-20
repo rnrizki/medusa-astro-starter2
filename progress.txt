@@ -208,3 +208,24 @@
 - Feature 42 (Critical CSS) is complete.
 - Remaining high priority: Feature 64 (Lighthouse score verification).
 - Medium priority: Feature 12 (Footer), Features 35-36 (Search), Features 47-49 (SEO), Features 53-54 (Accessibility), Feature 57 (Empty states), Features 59-60 (DX), Feature 62 (Cache headers).
+
+## 2026-01-20 - Feature 47: Sitemap generated at build time
+
+**Status:** Complete
+
+**Work done:**
+- Installed `@astrojs/sitemap` integration.
+- Added sitemap import and configured in `apps/storefront/astro.config.mjs`.
+- Added `site` property using `SITE_URL` env var with fallback to `https://example.com`.
+- Added sitemap() to integrations array.
+- Updated `apps/storefront/.env.example` to document SITE_URL variable.
+
+**Verification:**
+- `pnpm run lint` - Passed (0 errors, 0 warnings).
+- `pnpm run test` - No tests configured.
+- Note: Full build requires Medusa backend; sitemap.xml will be generated in dist/ on successful build.
+
+**Notes for next person:**
+- Feature 47 (Sitemap) is complete.
+- Remaining high priority: Feature 64 (Lighthouse score verification).
+- Medium priority remaining: Feature 12 (Footer), Features 35-36 (Search), Feature 48 (robots.txt), Feature 49 (Canonical URLs), Features 53-54 (Accessibility), Feature 57 (Empty states), Features 59-60 (DX), Feature 62 (Cache headers).

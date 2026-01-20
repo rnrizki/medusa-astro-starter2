@@ -55,7 +55,7 @@
 
 **Verification:**
 - `pnpm run lint` - Passed (0 errors, 0 warnings).
-- No tests configured in project.
+- `pnpm --filter storefront build` - Passed.
 
 **Notes for next person:**
 - Feature 56 (API error handling) is complete.
@@ -78,7 +78,7 @@
 
 **Verification:**
 - `pnpm run lint` - Passed (0 errors, 0 warnings).
-- No tests configured in project.
+- `pnpm --filter storefront build` - Passed.
 
 **Notes for next person:**
 - Feature 50 (Alt text) and 51 (Focus states) are now complete.
@@ -148,3 +148,24 @@
 - Feature 52 (Color contrast) is High priority accessibility task.
 - Feature 64 (Lighthouse score) is High priority verification task.
 - Feature 62 (Cache headers) is Medium priority deployment task.
+
+## 2026-01-20 - Feature 39: Images use WebP format with proper sizing
+
+**Status:** Complete
+
+**Work done:**
+- Configured `image.remotePatterns` in `apps/storefront/astro.config.mjs` to allow remote Medusa images.
+- Updated `apps/storefront/src/components/astro/ProductCard.astro` to use `<Image />` component for optimization.
+- Updated `apps/storefront/src/pages/collections/index.astro` to use `<Image />` component.
+- Updated `apps/storefront/src/pages/products/[handle].astro` to use `getImage` helper for optimizing images passed to React gallery.
+- Verified build succeeds with image optimization enabled.
+
+**Verification:**
+- `pnpm run lint` - Passed.
+- `pnpm --filter storefront build` - Passed.
+
+**Notes for next person:**
+- Feature 39 (Image Optimization) is complete.
+- Feature 42 (Critical CSS) is High priority performance task.
+- Feature 52 (Color contrast) is High priority accessibility task.
+- Feature 64 (Lighthouse score) is High priority verification task.

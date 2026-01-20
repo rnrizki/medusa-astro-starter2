@@ -44,11 +44,37 @@ if (!productData) {
   return Astro.redirect("/404");
 }
 
+import { getImage } from "astro:assets";
 import ProductActions from "@/components/react/ProductActions";
 import ProductImageGallery from "@/components/react/ProductImageGallery";
 
 // Get the main image
 const mainImage = productData.thumbnail || productData.images?.[0]?.url;
+
+// Optimize images for the gallery
+const optimizedImages = await Promise.all(
+  (productData.images || []).map(async (img) => {
+    try {
+      const optimized = await getImage({ src: img.url, width: 1000, height: 1000, format: "webp" });
+      return { ...img, url: optimized.src };
+    } catch (e) {
+      console.error(`Failed to optimize image ${img.url}`, e);
+      return img;
+    }
+  })
+);
+
+const optimizedThumbnail = productData.thumbnail
+  ? await (async () => {
+      try {
+        const opt = await getImage({ src: productData.thumbnail!, width: 1000, height: 1000, format: "webp" });
+        return opt.src;
+      } catch (e) {
+        return productData.thumbnail;
+      }
+    })()
+  : productData.thumbnail;
+
 ---
 
 <BaseLayout title={`${productData.title} | Storefront`} description={productData.description || `Buy ${productData.title}`} preloadImage={mainImage} image={mainImage}>
@@ -64,8 +90,8 @@ const mainImage = productData.thumbnail || productData.images?.[0]?.url;
       <div>
         <ProductImageGallery
           client:load
-          images={productData.images}
-          thumbnail={productData.thumbnail}
+          images={optimizedImages}
+          thumbnail={optimizedThumbnail}
           title={productData.title}
         />
       </div>

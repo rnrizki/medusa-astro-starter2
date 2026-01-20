@@ -596,7 +596,7 @@
         "Generate multiple sizes for srcset",
         "Include sizes attribute for responsive images"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 40,

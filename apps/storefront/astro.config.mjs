@@ -17,4 +17,7 @@ export default defineConfig({
       noExternal: ["@medusajs/js-sdk"],
     },
   },
+  image: {
+    remotePatterns: [{ protocol: "https" }, { protocol: "http" }],
+  },
 });

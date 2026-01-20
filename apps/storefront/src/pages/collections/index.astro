@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { listCollections } from '@/lib/medusa';
 import type { StoreCollection } from '@medusajs/types';
@@ -29,13 +30,11 @@ try {
           >
             <div class="aspect-[16/9] overflow-hidden bg-gray-100">
               {collection.metadata?.image ? (
-                <img
+                <Image
                   src={collection.metadata.image as string}
                   alt={collection.title}
-                  loading="lazy"
-                  decoding="async"
-                  width="600"
-                  height="338"
+                  width={600}
+                  height={338}
                   class="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
                 />
               ) : (

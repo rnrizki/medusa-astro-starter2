@@ -1,0 +1,212 @@
+import { useStore } from "@nanostores/react";
+import { $cart, $cartOpen, $cartTotal, closeCart } from "@/lib/stores/cart";
+
+export default function Cart() {
+  const cart = useStore($cart);
+  const isOpen = useStore($cartOpen);
+  const cartTotal = useStore($cartTotal);
+
+  // Helper to format currency
+  const formatMoney = (amount: number, currencyCode: string) => {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: currencyCode.toUpperCase(),
+    }).format(amount / 100);
+  };
+
+  return (
+    <div
+      className={`relative z-50 ${isOpen ? "visible" : "invisible"}`}
+      aria-labelledby="slide-over-title"
+      role="dialog"
+      aria-modal="true"
+    >
+      {/* Background backdrop */}
+      <div
+        className={`fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity duration-500 ease-in-out ${
+          isOpen ? "opacity-100" : "opacity-0"
+        }`}
+        onClick={closeCart}
+      />
+
+      <div className="fixed inset-0 overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+            {/* Sidebar panel */}
+            <div
+              className={`pointer-events-auto w-screen max-w-md transform transition duration-500 ease-in-out sm:duration-700 ${
+                isOpen ? "translate-x-0" : "translate-x-full"
+              }`}
+            >
+              <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+                {/* Header */}
+                <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
+                  <div className="flex items-start justify-between">
+                    <h2
+                      className="text-lg font-medium text-gray-900"
+                      id="slide-over-title"
+                    >
+                      Shopping Cart
+                    </h2>
+                    <div className="ml-3 flex h-7 items-center">
+                      <button
+                        type="button"
+                        className="-m-2 p-2 text-gray-400 hover:text-gray-500"
+                        onClick={closeCart}
+                      >
+                        <span className="sr-only">Close panel</span>
+                        {/* X Icon */}
+                        <svg
+                          className="h-6 w-6"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth="1.5"
+                          stroke="currentColor"
+                          aria-hidden="true"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M6 18L18 6M6 6l12 12"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="mt-8">
+                    <div className="flow-root">
+                      {!cart?.items?.length ? (
+                        <div className="flex flex-col items-center justify-center py-12 text-center">
+                          <p className="text-gray-500">Your cart is empty.</p>
+                          <button
+                            onClick={closeCart}
+                            className="mt-4 text-sm font-medium text-indigo-600 hover:text-indigo-500"
+                          >
+                            Continue Shopping
+                            <span aria-hidden="true"> &rarr;</span>
+                          </button>
+                        </div>
+                      ) : (
+                        <ul
+                          role="list"
+                          className="-my-6 divide-y divide-gray-200"
+                        >
+                          {cart.items.map((item) => (
+                            <li key={item.id} className="flex py-6">
+                              <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                {item.thumbnail ? (
+                                  <img
+                                    src={item.thumbnail}
+                                    alt={item.title}
+                                    className="h-full w-full object-cover object-center"
+                                  />
+                                ) : (
+                                  <div className="flex h-full w-full items-center justify-center bg-gray-100 text-gray-400">
+                                    <svg
+                                      className="h-8 w-8"
+                                      fill="none"
+                                      viewBox="0 0 24 24"
+                                      stroke="currentColor"
+                                    >
+                                      <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={1}
+                                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                                      />
+                                    </svg>
+                                  </div>
+                                )}
+                              </div>
+
+                              <div className="ml-4 flex flex-1 flex-col">
+                                <div>
+                                  <div className="flex justify-between text-base font-medium text-gray-900">
+                                    <h3>
+                                      <a
+                                        href={`/products/${item.variant?.product?.handle}`}
+                                      >
+                                        {item.title}
+                                      </a>
+                                    </h3>
+                                    <p className="ml-4">
+                                      {formatMoney(
+                                        item.unit_price,
+                                        cart.currency_code,
+                                      )}
+                                    </p>
+                                  </div>
+                                  <p className="mt-1 text-sm text-gray-500">
+                                    {item.variant?.title}
+                                  </p>
+                                </div>
+                                <div className="flex flex-1 items-end justify-between text-sm">
+                                  <p className="text-gray-500">
+                                    Qty {item.quantity}
+                                  </p>
+
+                                  <div className="flex">
+                                    {/* Remove button placeholder - Feature 27 */}
+                                    <button
+                                      type="button"
+                                      className="font-medium text-indigo-600 hover:text-indigo-500"
+                                      onClick={() => {
+                                        /* TODO: Implement remove */
+                                      }}
+                                    >
+                                      Remove
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Footer */}
+                {cart?.items?.length ? (
+                  <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
+                    <div className="flex justify-between text-base font-medium text-gray-900">
+                      <p>Subtotal</p>
+                      <p>{cartTotal}</p>
+                    </div>
+                    <p className="mt-0.5 text-sm text-gray-500">
+                      Shipping and taxes calculated at checkout.
+                    </p>
+                    <div className="mt-6">
+                      <a
+                        href="/checkout"
+                        className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                        onClick={closeCart}
+                      >
+                        Checkout
+                      </a>
+                    </div>
+                    <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
+                      <p>
+                        or{" "}
+                        <button
+                          type="button"
+                          className="font-medium text-indigo-600 hover:text-indigo-500"
+                          onClick={closeCart}
+                        >
+                          Continue Shopping
+                          <span aria-hidden="true"> &rarr;</span>
+                        </button>
+                      </p>
+                    </div>
+                  </div>
+                ) : null}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

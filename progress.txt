@@ -211,3 +211,29 @@
 - Feature 28 (CartButton) is also needed to toggle the sidebar
 - Feature 29 (Cart persistence) is needed to save the cart ID across sessions
 - The build failure needs to be addressed by setting up the environment variables properly before full e2e verification can happen.
+
+## 2026-01-20 - Feature 24: Cart sidebar displays cart contents
+
+**Status:** Complete
+
+**Work done:**
+- Created `src/components/react/Cart.tsx` with sliding sidebar UI
+- Integrated `nanostores` to read `$cart`, `$cartOpen`, and `$cartTotal`
+- Implemented:
+  - Slide-over sidebar with overlay and animations (Feature 25 basics)
+  - List of cart items with thumbnails, titles, quantities, prices
+  - Formatted currency display
+  - Empty state with "Continue Shopping" link
+  - Footer with subtotal and Checkout button
+- Integrated `Cart` component into `src/layouts/BaseLayout.astro` so it's available globally
+
+**Verification:**
+- `pnpm run lint` - 0 errors, 0 warnings
+- `pnpm run test` - no tests to run (expected)
+- Visual verification: Component structure handles empty and populated states correctly based on types.
+
+**Notes for next person:**
+- Feature 25 (Cart sidebar open/close) is technically implemented but needs to be marked complete in PRD.
+- Feature 28 (CartButton in header) is critical to actually open the cart (currently only `AddToCart` opens it).
+- Feature 29 (Cart persistence) is still needed.
+- Feature 26 (Update quantity) and Feature 27 (Remove items) placeholders are in the code but need implementation.

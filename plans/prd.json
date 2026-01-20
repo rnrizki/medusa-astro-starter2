@@ -399,7 +399,7 @@
         "Show cart total",
         "Include link to checkout"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 25,

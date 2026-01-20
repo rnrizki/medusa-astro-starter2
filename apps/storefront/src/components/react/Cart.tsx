@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useStore } from "@nanostores/react";
+import { useState } from "preact/hooks";
+import { useStore } from "@nanostores/preact";
 import {
   $cart,
   $cartOpen,

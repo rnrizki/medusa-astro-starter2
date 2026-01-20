@@ -22,7 +22,7 @@
     "tech_stack": {
       "storefront": {
         "framework": "Astro 5.x",
-        "ui_islands": "React 18.x",
+        "ui_islands": "Preact (migrated from React for performance)",
         "styling": "Tailwind CSS 3.x",
         "state_management": "Nanostores",
         "medusa_client": "@medusajs/js-sdk",
@@ -80,7 +80,7 @@
         "Configure lint task for both apps",
         "Verify pnpm turbo dev starts both apps"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 2,
@@ -93,7 +93,7 @@
         "Include packages/* in workspace packages",
         "Verify pnpm install works from root"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 3,
@@ -107,7 +107,7 @@
         "Add lint script that runs turbo lint",
         "Add clean script to remove build artifacts"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 4,
@@ -622,7 +622,7 @@
         "Remove any unused dependencies",
         "Verify with source-map-explorer"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 42,
@@ -901,7 +901,7 @@
         "No TypeScript errors",
         "Output directory contains expected files"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 64,
@@ -929,7 +929,7 @@
         "Open cart sidebar",
         "Verify item appears in cart"
       ],
-      "passes": false
+      "passes": true
     }
   ]
 }

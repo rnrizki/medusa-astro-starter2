@@ -313,7 +313,7 @@
         "Update price display when variant changes",
         "Pass selected variant to AddToCart component"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 19,

@@ -22,3 +22,26 @@
 - Feature 18 (Product variants) is CRITICAL. Currently, users can only buy the first variant. This should be the top priority.
 - Feature 46 (Open Graph meta tags) is a good quick SEO win.
 - Feature 12 (Footer) is still pending.
+
+## 2026-01-20 - Feature 18: Product detail page handles multiple variants
+
+**Status:** Complete
+
+**Work done:**
+- Refactored `apps/storefront/src/pages/products/[handle].astro` to use `ProductActions` island.
+- Updated `apps/storefront/src/components/react/ProductActions.tsx` to fix type errors and handle `null` currency codes.
+- Removed static price display and "Add to Cart" button from Astro template in favor of the interactive React component.
+- The `ProductActions` component now handles:
+    - Displaying product price (dynamic based on variant).
+    - Selecting variants via options (e.g. Size, Color).
+    - Updating price when variant changes.
+    - Enabling/Disabling "Add to Cart" based on availability.
+
+**Verification:**
+- `pnpm run lint` - Passed.
+- `pnpm --filter storefront build` - Passed.
+
+**Notes for next person:**
+- Feature 18 is complete. Product detail page now supports full variant selection.
+- Feature 19 (Product image gallery) is the next logical step to complete the product detail page experience.
+- Feature 46 (Open Graph meta tags) and Feature 12 (Footer) are also high priority.

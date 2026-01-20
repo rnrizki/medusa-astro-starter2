@@ -44,28 +44,10 @@ if (!productData) {
   return Astro.redirect("/404");
 }
 
-import AddToCart from "@/components/react/AddToCart";
+import ProductActions from "@/components/react/ProductActions";
 
 // Get the main image
 const mainImage = productData.thumbnail || productData.images?.[0]?.url;
-
-// Get price from first variant
-const firstVariant = productData.variants?.[0];
-const price = firstVariant?.calculated_price;
-
-// Format the price
-const formatPrice = (amount: number | undefined, currencyCode: string | undefined) => {
-  if (amount === undefined) return null;
-  const currency = currencyCode?.toUpperCase() || "USD";
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency,
-  }).format(amount / 100);
-};
-
-const formattedPrice = price?.calculated_amount !== undefined && price?.calculated_amount !== null
-  ? formatPrice(price.calculated_amount, price.currency_code ?? undefined)
-  : null;
 ---
 
 <BaseLayout title={`${productData.title} | Storefront`} description={productData.description || `Buy ${productData.title}`} preloadImage={mainImage}>
@@ -113,23 +95,13 @@ const formattedPrice = price?.calculated_amount !== undefined && price?.calculat
       <div class="flex flex-col">
         <h1 class="text-3xl font-bold text-gray-900">{productData.title}</h1>
 
-        {formattedPrice && (
-          <p class="mt-4 text-2xl font-semibold text-gray-900">
-            {formattedPrice}
-          </p>
-        )}
+        <div class="mt-4">
+          <ProductActions product={productData} client:load />
+        </div>
 
         {productData.description && (
           <div class="mt-6 prose prose-sm text-gray-600" set:html={productData.description} />
         )}
-
-        <div class="mt-8">
-          {firstVariant?.id ? (
-            <AddToCart variantId={firstVariant.id} client:visible />
-          ) : (
-            <p class="text-sm text-red-500">Out of stock</p>
-          )}
-        </div>
       </div>
     </div>
   </main>

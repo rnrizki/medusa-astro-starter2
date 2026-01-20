@@ -609,7 +609,7 @@
         "Search uses client:idle",
         "Verify JS doesn't load until needed"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 41,

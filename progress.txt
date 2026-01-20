@@ -269,3 +269,25 @@
 - Feature 18 (Multiple variants) is still High priority and pending.
 - Feature 12 (Footer) is Medium priority.
 - Feature 40 (Client directives) is Critical and needs final verification.
+
+## 2026-01-20 - Feature 40: React islands use client:visible directive by default
+
+**Status:** Complete
+
+**Work done:**
+- Verified usage of `client` directives across the codebase.
+- `AddToCart` uses `client:visible`.
+- `CartButton` uses `client:visible`.
+- `CartInitializer` uses `client:load` (correct).
+- `Cart` sidebar was using `client:visible` but was updated to `client:idle` in `BaseLayout.astro`. This ensures it hydrates reliably even if hidden, while still deferring execution until the browser is idle (performance optimization).
+- Updated PRD to mark Feature 40 as passing.
+
+**Verification:**
+- `pnpm run lint` - 0 errors.
+- `pnpm build --filter storefront` - Success.
+
+**Notes for next person:**
+- Feature 40 is complete.
+- Feature 18 (Multiple variants) is HIGH priority - affects Add to Cart flow.
+- Feature 30 (Checkout) is HIGH priority - missing page.
+- Feature 12 (Footer) is MEDIUM priority - missing layout element.

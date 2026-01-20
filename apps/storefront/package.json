@@ -15,12 +15,15 @@
     "@astrojs/react": "^4.3.1",
     "@astrojs/tailwind": "^6.0.2",
     "@medusajs/js-sdk": "^2.12.5",
+    "@nanostores/react": "^1.0.0",
     "astro": "^5.8.0",
+    "nanostores": "^1.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "tailwindcss": "^3.4.17"
   },
   "devDependencies": {
+    "@medusajs/types": "^2.12.5",
     "@types/react": "^18.3.17",
     "@types/react-dom": "^18.3.5",
     "typescript": "^5.7.3"

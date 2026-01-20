@@ -104,3 +104,30 @@
 - Feature 13 (Homepage) can now be implemented with the layout ready
 - Feature 5 (Cloudflare adapter) is still pending for deployment readiness
 - Consider Feature 22 (Cart state with Nanostores) as it enables cart features
+
+## 2026-01-20 - Feature 22: Cart state managed with Nanostores
+
+**Status:** Complete
+
+**Work done:**
+- Installed `nanostores` (v1.1.0) and `@nanostores/react` (v1.0.0) in storefront
+- Installed `@medusajs/types` (v2.12.5) as devDependency for type declarations
+- Created `src/lib/stores/cart.ts` with:
+  - `$cart` atom for Medusa cart data (StoreCart | null)
+  - `$cartOpen` atom for sidebar visibility (boolean)
+  - `$cartCount` computed for total item count (sums quantities)
+  - `$cartTotal` computed for formatted total price with currency
+  - `$cartTotalRaw` computed for raw total in cents
+  - Helper actions: `setCart`, `openCart`, `closeCart`, `toggleCart`, `clearCart`
+
+**Verification:**
+- `pnpm run lint` - 0 errors, 0 warnings
+- `pnpm run test` - no tests to run (expected)
+
+**Notes for next person:**
+- Feature 23 (AddToCart component) can now use the cart store
+- Feature 24 (Cart sidebar) can now use the cart store
+- Feature 28 (CartButton in header) can now use $cartCount
+- Feature 29 (Cart persistence) should use localStorage to save/restore cart ID
+- Import stores with `import { $cart, $cartCount } from '@/lib/stores/cart'`
+- Use `@nanostores/react` hooks: `useStore($cart)` in React components

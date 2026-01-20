@@ -369,7 +369,7 @@
         "Create $cartCount computed for item count",
         "Create $cartTotal computed for total price"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 23,

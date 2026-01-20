@@ -326,7 +326,7 @@
         "Allow clicking thumbnails to change main image",
         "Implement as React island for interactivity"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 20,

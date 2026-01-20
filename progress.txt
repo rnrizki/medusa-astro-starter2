@@ -1,47 +1,21 @@
 
-## 2026-01-20 - Feature 34: Order confirmation page displays after successful checkout
+## 2026-01-20 - Feature 19: Product image gallery supports multiple images
 
 **Status:** Complete
 
 **Work done:**
-- Created `src/components/react/OrderConfirmation.tsx` Preact island.
-- Implemented client-side fetching of order details using `retrieveOrder` SDK function.
-- Displays success message, order ID, email, shipping address, order items, and total.
-- Handles loading and error states.
-- Created `src/pages/order/index.astro` to host the confirmation component.
-- Updated `CheckoutForm` to redirect to `/order?id={id}` (using query params to support static hosting).
-- Added `retrieveOrder` helper to `src/lib/medusa.ts`.
-- Verified build passes and linting passes.
-
-**Verification:**
-- `pnpm run lint` - Success.
-- `pnpm --filter storefront build` - Success (generated `/order/index.html`).
-
-**Notes for next person:**
-- Feature 34 (Order confirmation) is complete. The checkout flow is now end-to-end complete.
-- Feature 18 (Product variants) is CRITICAL. Currently, users can only buy the first variant. This should be the top priority.
-- Feature 46 (Open Graph meta tags) is a good quick SEO win.
-- Feature 12 (Footer) is still pending.
-
-## 2026-01-20 - Feature 18: Product detail page handles multiple variants
-
-**Status:** Complete
-
-**Work done:**
-- Refactored `apps/storefront/src/pages/products/[handle].astro` to use `ProductActions` island.
-- Updated `apps/storefront/src/components/react/ProductActions.tsx` to fix type errors and handle `null` currency codes.
-- Removed static price display and "Add to Cart" button from Astro template in favor of the interactive React component.
-- The `ProductActions` component now handles:
-    - Displaying product price (dynamic based on variant).
-    - Selecting variants via options (e.g. Size, Color).
-    - Updating price when variant changes.
-    - Enabling/Disabling "Add to Cart" based on availability.
+- Created `apps/storefront/src/components/react/ProductImageGallery.tsx`.
+- Implemented gallery logic: main image, thumbnails, selection state.
+- Updated `apps/storefront/src/pages/products/[handle].astro` to use `ProductImageGallery`.
+- Supports single image (no thumbnails) and multiple images.
+- Handles `null` values from Medusa types gracefully.
 
 **Verification:**
 - `pnpm run lint` - Passed.
 - `pnpm --filter storefront build` - Passed.
 
 **Notes for next person:**
-- Feature 18 is complete. Product detail page now supports full variant selection.
-- Feature 19 (Product image gallery) is the next logical step to complete the product detail page experience.
-- Feature 46 (Open Graph meta tags) and Feature 12 (Footer) are also high priority.
+- Feature 19 (Image Gallery) is complete.
+- Feature 46 (Open Graph meta tags) is a high priority SEO task.
+- Feature 12 (Footer) is still pending.
+- Feature 8 and 9 are marked as false in PRD but seem implemented. Double check them if you have time.

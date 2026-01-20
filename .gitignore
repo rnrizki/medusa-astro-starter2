@@ -48,3 +48,6 @@ yarn-error.log*
 # macOS system files
 .DS_Store
 stats.html
+
+# Lighthouse CI
+.lighthouseci

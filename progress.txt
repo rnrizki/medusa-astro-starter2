@@ -129,3 +129,22 @@
 - High priority remaining: Feature 52 (Color contrast) accessibility.
 - High priority remaining: Feature 64 (Lighthouse score).
 - Check the lint warning about Cloudflare KV SESSION binding if sessions are ever needed.
+
+## 2026-01-20 - Feature 43: Prefetching configured for viewport links
+
+**Status:** Complete
+
+**Work done:**
+- Enabled prefetching in `apps/storefront/astro.config.mjs` with `defaultStrategy: 'viewport'`.
+- This ensures links are prefetched when they enter the viewport, improving navigation speed.
+
+**Verification:**
+- `pnpm run lint` - Passed.
+- `pnpm run test` - Passed.
+
+**Notes for next person:**
+- Feature 43 (Prefetching) is complete.
+- Feature 42 (Critical CSS inlining) is High priority performance task (currently marked false).
+- Feature 52 (Color contrast) is High priority accessibility task.
+- Feature 64 (Lighthouse score) is High priority verification task.
+- Feature 62 (Cache headers) is Medium priority deployment task.

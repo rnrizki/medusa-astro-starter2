@@ -6,6 +6,9 @@ import { visualizer } from "rollup-plugin-visualizer";
 
 export default defineConfig({
   output: "static",
+  prefetch: {
+    defaultStrategy: "viewport",
+  },
   adapter: cloudflare(),
   integrations: [preact({ compat: true }), tailwind()],
   vite: {

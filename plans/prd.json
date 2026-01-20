@@ -647,7 +647,7 @@
         "Verify prefetch on hover/visible",
         "Test navigation feels instant"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 44,

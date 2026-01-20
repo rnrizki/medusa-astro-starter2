@@ -796,7 +796,7 @@
         "Include link back to homepage",
         "Match site design"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 56,

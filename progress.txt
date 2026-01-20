@@ -28,3 +28,26 @@
 - Feature 18 (Multiple variants) is still pending.
 - Feature 12 (Footer) is pending.
 - The `.env` file still has dummy keys.
+
+## 2026-01-20 - Feature 55: 404 page exists for unknown routes
+
+**Status:** Complete
+
+**Work done:**
+- Created `src/pages/404.astro` with friendly not found message.
+- Page uses BaseLayout for consistent site design.
+- Displays 404 error code and "Page not found" heading.
+- Includes "Go back home" button linking to `/`.
+- Includes "Browse products" link as secondary action.
+- Styling matches existing site design (Tailwind, blue-600 accent).
+
+**Verification:**
+- `pnpm run lint` - Success (0 errors, 0 warnings).
+- `pnpm run test` - No test tasks configured (passes vacuously).
+
+**Notes for next person:**
+- Feature 55 (404 page) is complete.
+- Feature 8 (TypeScript path aliases) appears already done (@ alias exists in tsconfig).
+- Feature 30 (Checkout page) remains HIGH priority next step.
+- Feature 12 (Footer) is still pending.
+- Feature 45 (SEO meta titles) and Feature 46 (Open Graph) are good quick wins.

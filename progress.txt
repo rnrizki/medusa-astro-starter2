@@ -131,3 +131,28 @@
 - Feature 29 (Cart persistence) should use localStorage to save/restore cart ID
 - Import stores with `import { $cart, $cartCount } from '@/lib/stores/cart'`
 - Use `@nanostores/react` hooks: `useStore($cart)` in React components
+
+## 2026-01-20 - Feature 15: Product card component displays product preview
+
+**Status:** Complete
+
+**Work done:**
+- Created `src/components/astro/ProductCard.astro`
+- Accepts `StoreProduct` as prop with proper TypeScript typing
+- Displays product thumbnail with lazy loading (`loading="lazy"`, `decoding="async"`)
+- Shows placeholder SVG when no thumbnail available
+- Shows product title with line-clamp for overflow
+- Formats price from first variant using `Intl.NumberFormat` (handles cents to dollars conversion)
+- Links entire card to `/products/[handle]` detail page
+- Styled with Tailwind: responsive aspect-square image, hover effects, border, shadow
+
+**Verification:**
+- `pnpm run lint` - 0 errors, 0 warnings
+- `pnpm run test` - no tests to run (expected)
+
+**Notes for next person:**
+- Feature 13 (Homepage) can now use ProductCard to display featured products
+- Feature 14 (Product listing page) can now use ProductCard in a grid
+- Feature 21 (Collection pages) can now use ProductCard
+- Feature 16 (Dynamic product detail pages) is next critical priority for the `/products/[handle]` route
+- ProductCard imports `StoreProduct` type from `@medusajs/types`

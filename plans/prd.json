@@ -272,7 +272,7 @@
         "Show formatted price from first variant",
         "Link entire card to product detail page"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 16,

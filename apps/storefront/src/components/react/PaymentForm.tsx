@@ -6,9 +6,10 @@ import {
   initiatePaymentSession,
   completeCart,
 } from "@/lib/medusa";
+import type { StoreOrder, StorePaymentSession } from "@medusajs/types";
 
 interface Props {
-  onComplete?: (order: any) => void;
+  onComplete?: (order: StoreOrder) => void;
 }
 
 interface PaymentProvider {
@@ -36,12 +37,11 @@ export default function PaymentForm({ onComplete }: Props) {
         setProviders(payment_providers);
 
         // If we already have a payment session in the payment collection, select it
-        // Note: checking cart type safely as it might differ in V2
-        const paymentCollection = (cart as any).payment_collection;
-        if (paymentCollection?.payment_sessions?.length > 0) {
+        const paymentCollection = cart.payment_collection;
+        if (paymentCollection?.payment_sessions?.length) {
           // Assume the first one is active or check status
           const activeSession = paymentCollection.payment_sessions.find(
-            (s: any) => s.status === "pending",
+            (s: StorePaymentSession) => s.status === "pending",
           );
           if (activeSession) {
             setSelectedProvider(activeSession.provider_id);
@@ -56,7 +56,7 @@ export default function PaymentForm({ onComplete }: Props) {
     }
 
     loadProviders();
-  }, [cart?.region_id, (cart as any)?.payment_collection]);
+  }, [cart?.region_id, cart?.payment_collection]);
 
   const handleSelectPayment = async (providerId: string) => {
     if (!cart) return;
@@ -102,10 +102,9 @@ export default function PaymentForm({ onComplete }: Props) {
         onComplete?.(response.order);
       } else {
         // Handle cart-type response (error or further steps)
-        const errorMsg =
-          (response as any).error?.message ||
-          "Payment incomplete. Please check details.";
-        setError(errorMsg);
+        // The cart response doesn't have an error property in the type,
+        // so we show a generic message
+        setError("Payment incomplete. Please check details.");
       }
     } catch (err) {
       console.error("Error placing order:", err);

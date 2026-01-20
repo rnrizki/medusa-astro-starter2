@@ -153,3 +153,32 @@ pnpm run lighthouse
 - Run `pnpm run lighthouse` after building to verify scores.
 - Remaining incomplete feature: Feature 60 (TypeScript types from MedusaJS).
 - Feature 60 is medium priority - improving type safety by using @medusajs/types.
+
+## 2026-01-20 - Feature 60: TypeScript types generated from MedusaJS
+
+**Status:** Complete
+
+**Work done:**
+- Imported `StoreCart` type in `apps/storefront/src/lib/medusa.ts` and used it for `initiatePaymentSession` function parameter.
+- Updated `apps/storefront/src/components/react/PaymentForm.tsx`:
+  - Imported `StoreOrder` and `StorePaymentSession` from `@medusajs/types`.
+  - Changed `onComplete` prop type from `any` to `StoreOrder`.
+  - Fixed `(cart as any).payment_collection` to use proper type access.
+  - Fixed `(s: any)` to use `StorePaymentSession` type.
+  - Removed unnecessary `(response as any)` cast.
+- Verified no `any` types remain in the storefront source code.
+- Existing files already using proper types:
+  - `cart.ts`: `StoreCart`
+  - `ProductActions.tsx`: `StoreProduct`
+  - `Search.tsx`: `StoreProduct`
+  - `OrderConfirmation.tsx`: `StoreOrder`
+
+**Verification:**
+- `pnpm run lint` - Passed (0 errors, 1 warning unrelated to types).
+- `pnpm run test` - Passed (no tests configured).
+
+**Notes for next person:**
+- Feature 60 is complete. All MedusaJS types are now properly imported from `@medusajs/types`.
+- No `any` types remain in the storefront source code.
+- All 65 features in the PRD are now marked as `passes: true`.
+- The project is feature-complete according to the PRD.

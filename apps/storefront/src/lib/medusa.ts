@@ -1,4 +1,5 @@
 import Medusa from "@medusajs/js-sdk";
+import type { StoreCart } from "@medusajs/types";
 
 /**
  * Medusa JS SDK client initialization
@@ -307,7 +308,7 @@ export async function listPaymentProviders(
  * Initiate a payment session for a cart
  */
 export async function initiatePaymentSession(
-  cart: any,
+  cart: StoreCart,
   body: Parameters<typeof medusa.store.payment.initiatePaymentSession>[1],
   query?: Parameters<typeof medusa.store.payment.initiatePaymentSession>[2],
 ) {

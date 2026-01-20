@@ -862,7 +862,7 @@
         "Avoid any types",
         "IDE autocomplete works correctly"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 61,

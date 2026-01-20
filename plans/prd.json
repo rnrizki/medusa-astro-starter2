@@ -340,7 +340,7 @@
         "Show collection title and optional image",
         "Link to individual collection pages"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 21,

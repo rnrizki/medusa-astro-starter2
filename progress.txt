@@ -139,3 +139,28 @@
 - Feature 20 (Collections listing) and Feature 21 (Collection pages) are HIGH priority.
 - The `/collections` page is linked from header but doesn't exist yet.
 - The `.env` file still has dummy keys. For full e2e testing, valid Medusa keys are needed.
+
+## 2026-01-20 - Feature 20: Collections listing page shows all collections
+
+**Status:** Complete
+
+**Work done:**
+- Created `src/pages/collections/index.astro`
+- Fetches all collections at build time using SDK's `listCollections` (limit 100)
+- Displays collections in responsive 1/2/3 column grid
+- Shows collection title and optional image (from metadata.image)
+- Optional description from metadata.description
+- Links each collection to `/collections/[handle]`
+- Graceful empty state if no collections or backend unavailable
+- Images use `loading="lazy"` and `decoding="async"` for performance
+
+**Verification:**
+- `pnpm run lint` - 0 errors
+- `pnpm run test` - No tests configured (passes)
+
+**Notes for next person:**
+- Feature 20 is complete. The `/collections` page now works (was previously a broken link in header).
+- Feature 21 (Dynamic collection pages) is HIGH priority - individual collection pages don't exist yet.
+- Feature 29 (Cart persistence) is HIGH priority - cart is lost on page refresh.
+- Feature 18 (Multiple variants) is HIGH priority.
+- The `.env` file still has dummy keys. For full e2e testing, valid Medusa keys are needed.

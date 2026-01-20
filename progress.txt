@@ -90,3 +90,26 @@
 - Feature 17 (Product detail full info) is CRITICAL.
 - The `/products` and `/collections` pages are linked but may not exist yet.
 - The `.env` file still has dummy keys. For full e2e testing, valid Medusa keys are needed.
+
+## 2026-01-20 - Feature 14: Product listing page shows all products in a grid
+
+**Status:** Complete
+
+**Work done:**
+- Created `src/pages/products/index.astro`
+- Fetches all products at build time using SDK's `listProducts` (limit 100)
+- Displays products in responsive 1/2/3/4 column grid using ProductCard component
+- Page header with title and description
+- Graceful empty state if no products or backend unavailable
+- Each product links to its detail page via ProductCard
+
+**Verification:**
+- `pnpm run lint` - 0 errors
+- `pnpm run test` - No tests configured (passes)
+
+**Notes for next person:**
+- Feature 14 is complete. The `/products` page now displays all products.
+- Feature 17 (Product detail full info) is CRITICAL and next priority.
+- Feature 20 (Collections listing) and Feature 21 (Collection pages) are HIGH priority.
+- The `/collections` page is linked from header but doesn't exist yet.
+- The `.env` file still has dummy keys. For full e2e testing, valid Medusa keys are needed.

@@ -257,7 +257,7 @@
         "Each product links to its detail page",
         "Show product image, title, and price"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 15,

@@ -2,6 +2,15 @@
 
 A blazing fast MedusaJS + Astro storefront starter with React islands, optimized for sub-second LCP and 95+ Lighthouse scores. Monorepo setup using Turborepo with pnpm workspaces.
 
+## Using This Template
+
+```bash
+# Create a new repo from this template
+gh repo create my-store --template christiananese/astro-starter --clone --public
+
+# Or use GitHub's "Use this template" button above
+```
+
 ## Project Structure
 
 This is a monorepo containing:

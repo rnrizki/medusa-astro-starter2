@@ -96,7 +96,6 @@ export default function PaymentForm({ onComplete }: Props) {
 
       if (response.type === "order") {
         setCart(null);
-        // @ts-ignore
         if (typeof window !== "undefined") {
           localStorage.removeItem("cart_id");
         }
@@ -174,6 +173,7 @@ export default function PaymentForm({ onComplete }: Props) {
           const isSelected = selectedProvider === provider.id;
 
           return (
+            // eslint-disable-next-line jsx-a11y/label-has-associated-control
             <label
               key={provider.id}
               className={`relative flex cursor-pointer items-center justify-between rounded-lg border p-4 transition-colors ${

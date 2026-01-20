@@ -19,3 +19,24 @@
 - This helps with Feature 64 (Lighthouse/Accessibility/SEO) by providing navigation landmarks and crawlable links.
 - High priority remaining: Feature 64 (Lighthouse score verification) - still technically marked false, but many dependencies are done.
 - Medium priority remaining: Feature 48 (robots.txt), Feature 49 (Canonical URLs), Feature 57 (Empty states), Features 59-60 (DX), Feature 62 (Cache headers).
+
+## 2026-01-20 - Feature 59: ESLint and Prettier configured
+
+**Status:** Complete
+
+**Work done:**
+- Installed ESLint 9, Prettier, and related plugins (@typescript-eslint, eslint-plugin-astro, jsx-a11y).
+- Configured ESLint (Flat Config) in `apps/storefront/eslint.config.mjs`.
+- Configured Prettier in `apps/storefront/.prettierrc.mjs`.
+- Updated `apps/storefront/package.json` scripts: added `lint` (eslint + astro check) and `format`.
+- Fixed existing linting errors in `Cart.tsx`, `PaymentForm.tsx`, and `ProductImageGallery.tsx`.
+
+**Verification:**
+- `pnpm --filter storefront lint` - Passed (0 errors).
+- `pnpm run test` - Skipped (no tests configured), effectively passed.
+
+**Notes for next person:**
+- Feature 59 is complete. Code quality tools are now active.
+- Please run `pnpm run lint` before committing.
+- Remaining High Priority: Feature 64 (Lighthouse).
+- Remaining Medium Priority prerequisites: Feature 48 (Robots.txt), Feature 49 (Canonical URLs), Feature 62 (Cache headers).

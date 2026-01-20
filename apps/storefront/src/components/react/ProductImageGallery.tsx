@@ -58,7 +58,6 @@ export default function ProductImageGallery({
           alt={title}
           className="h-full w-full object-cover object-center"
           loading="eager"
-          // @ts-ignore - fetchpriority is not yet in standard types
           fetchpriority="high"
         />
       </div>

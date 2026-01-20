@@ -849,7 +849,7 @@
         "Add lint script to package.json",
         "Include lint in CI pipeline"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 60,

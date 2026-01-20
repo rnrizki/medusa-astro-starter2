@@ -153,6 +153,7 @@ export default function Cart() {
           isOpen ? "opacity-100" : "opacity-0"
         }`}
         onClick={closeCart}
+        aria-hidden="true"
       />
 
       <div className="fixed inset-0 overflow-hidden">
@@ -245,7 +246,6 @@ export default function Cart() {
                         </div>
                       ) : (
                         <ul
-                          role="list"
                           className="-my-6 divide-y divide-gray-200"
                         >
                           {cart.items.map((item) => (

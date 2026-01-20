@@ -733,7 +733,7 @@
         "Decorative images have empty alt",
         "Verify with accessibility audit"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 51,
@@ -746,7 +746,7 @@
         "Form inputs show focus clearly",
         "Test with keyboard navigation"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 52,

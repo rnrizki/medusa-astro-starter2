@@ -103,7 +103,7 @@ export default function Cart() {
                     <div className="ml-3 flex h-7 items-center">
                       <button
                         type="button"
-                        className="-m-2 p-2 text-gray-400 hover:text-gray-500"
+                        className="-m-2 rounded-md p-2 text-gray-400 hover:text-gray-500"
                         onClick={closeCart}
                       >
                         <span className="sr-only">Close panel</span>
@@ -133,7 +133,7 @@ export default function Cart() {
                         <button
                           type="button"
                           onClick={() => setError(null)}
-                          className="ml-2 text-red-500 hover:text-red-700"
+                          className="ml-2 rounded text-red-500 hover:text-red-700"
                           aria-label="Dismiss error"
                         >
                           <svg
@@ -161,7 +161,7 @@ export default function Cart() {
                           <p className="text-gray-500">Your cart is empty.</p>
                           <button
                             onClick={closeCart}
-                            className="mt-4 text-sm font-medium text-indigo-600 hover:text-indigo-500"
+                            className="mt-4 rounded text-sm font-medium text-indigo-600 hover:text-indigo-500"
                           >
                             Continue Shopping
                             <span aria-hidden="true"> &rarr;</span>
@@ -234,7 +234,7 @@ export default function Cart() {
                                     <div className="flex items-center rounded border border-gray-200">
                                       <button
                                         type="button"
-                                        className="px-2 py-1 text-gray-600 hover:text-indigo-600 disabled:opacity-50"
+                                        className="rounded-l px-2 py-1 text-gray-600 hover:text-indigo-600 disabled:opacity-50"
                                         disabled={
                                           updatingItems[item.id] ||
                                           item.quantity <= 1
@@ -276,7 +276,7 @@ export default function Cart() {
                                       </span>
                                       <button
                                         type="button"
-                                        className="px-2 py-1 text-gray-600 hover:text-indigo-600 disabled:opacity-50"
+                                        className="rounded-r px-2 py-1 text-gray-600 hover:text-indigo-600 disabled:opacity-50"
                                         disabled={updatingItems[item.id]}
                                         onClick={() =>
                                           handleUpdateQuantity(
@@ -293,7 +293,7 @@ export default function Cart() {
                                   <div className="flex">
                                     <button
                                       type="button"
-                                      className="font-medium text-indigo-600 hover:text-indigo-500 disabled:opacity-50"
+                                      className="rounded font-medium text-indigo-600 hover:text-indigo-500 disabled:opacity-50"
                                       onClick={() => handleRemoveItem(item.id)}
                                       disabled={updatingItems[item.id]}
                                     >
@@ -334,7 +334,7 @@ export default function Cart() {
                         or{" "}
                         <button
                           type="button"
-                          className="font-medium text-indigo-600 hover:text-indigo-500"
+                          className="rounded font-medium text-indigo-600 hover:text-indigo-500"
                           onClick={closeCart}
                         >
                           Continue Shopping

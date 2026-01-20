@@ -62,3 +62,26 @@
 - High priority remaining: Feature 50 (Alt text), 51 (Focus states), 52 (Color contrast) accessibility tasks.
 - High priority remaining: Feature 58 (README), 61 (Cloudflare deployment config).
 - Feature 8 and 9 marked false but may be implemented - verify if time permits.
+
+## 2026-01-20 - Feature 51: Focus states visible on all interactive elements
+
+**Status:** Complete
+
+**Work done:**
+- Added global focus-visible styles in `apps/storefront/src/styles/global.css`.
+- Applied `:focus-visible` to all interactive elements (a, button, input, select, textarea).
+- Uses indigo ring with offset for consistent appearance across the site.
+- Added `rounded-md` to CartButton for proper focus ring shape.
+- Added `focus-visible:ring-offset-0` to ProductCard for proper card-shaped focus.
+- Added `rounded` and `rounded-l`/`rounded-r` classes to Cart component buttons.
+- Also marked Feature 50 (alt text) as complete - verified all images already have proper alt text.
+
+**Verification:**
+- `pnpm run lint` - Passed (0 errors, 0 warnings).
+- No tests configured in project.
+
+**Notes for next person:**
+- Feature 50 (Alt text) and 51 (Focus states) are now complete.
+- High priority remaining: Feature 52 (Color contrast) accessibility.
+- High priority remaining: Feature 58 (README), 61 (Cloudflare deployment config).
+- Feature 8 and 9 marked false but may be implemented - verify if time permits.

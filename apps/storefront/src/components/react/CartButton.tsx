@@ -8,7 +8,7 @@ export default function CartButton() {
     <button
       type="button"
       onClick={openCart}
-      className="group relative flex items-center p-2 text-gray-700 hover:text-gray-900"
+      className="group relative flex items-center rounded-md p-2 text-gray-700 hover:text-gray-900"
       aria-label={`Shopping cart${cartCount > 0 ? `, ${cartCount} items` : ""}`}
     >
       {/* Cart Icon */}

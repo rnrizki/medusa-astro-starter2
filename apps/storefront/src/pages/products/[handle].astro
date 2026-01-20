@@ -32,6 +32,8 @@ if (!productData) {
   return Astro.redirect("/404");
 }
 
+import AddToCart from "@/components/react/AddToCart";
+
 // Get the main image
 const mainImage = productData.thumbnail || productData.images?.[0]?.url;
 
@@ -111,9 +113,11 @@ const formattedPrice = price?.calculated_amount !== undefined && price?.calculat
 
         <!-- Placeholder for AddToCart component (Feature 23) -->
         <div class="mt-8">
-          <p class="text-sm text-gray-500">
-            Variant ID: {firstVariant?.id || "N/A"}
-          </p>
+          {firstVariant?.id ? (
+            <AddToCart variantId={firstVariant.id} client:visible />
+          ) : (
+            <p class="text-sm text-red-500">Out of stock</p>
+          )}
         </div>
       </div>
     </div>

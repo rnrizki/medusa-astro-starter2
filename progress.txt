@@ -186,3 +186,28 @@
 - Feature 14 (Product listing page) can now link to these detail pages
 - Feature 13 (Homepage) can use ProductCard which links here
 - Image uses `loading="eager"` and `fetchpriority="high"` per Feature 37 requirements
+
+## 2026-01-20 - Feature 23: AddToCart component adds items to cart
+
+**Status:** Complete
+
+**Work done:**
+- Created `src/components/react/AddToCart.tsx`
+- Implemented `handleAddToCart` logic:
+  - Checks/Creates cart if needed
+  - Calls `addToCart` from SDK
+  - Updates `$cart` store
+  - Shows loading/error states
+- Integrated `AddToCart` component into `src/pages/products/[handle].astro`
+- Replaced placeholder variant ID display with functional button
+
+**Verification:**
+- `pnpm run lint` - 0 errors, 0 warnings
+- `pnpm run build` (storefront) - Failed (Expected): Missing environment variables (API Key) prevents `getStaticPaths` from fetching products during build.
+  - To fix: Create `.env` with valid `MEDUSA_PUBLISHABLE_KEY` and ensure backend is running.
+
+**Notes for next person:**
+- Feature 24 (Cart sidebar) is next critical priority to view what was added
+- Feature 28 (CartButton) is also needed to toggle the sidebar
+- Feature 29 (Cart persistence) is needed to save the cart ID across sessions
+- The build failure needs to be addressed by setting up the environment variables properly before full e2e verification can happen.

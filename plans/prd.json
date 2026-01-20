@@ -384,7 +384,7 @@
         "Update cart store on success",
         "Show loading state during request"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 24,

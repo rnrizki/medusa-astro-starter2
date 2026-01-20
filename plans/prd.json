@@ -286,7 +286,7 @@
         "Handle 404 for non-existent products",
         "Pass product data to page template"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 17,

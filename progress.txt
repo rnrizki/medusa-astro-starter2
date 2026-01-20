@@ -156,3 +156,33 @@
 - Feature 21 (Collection pages) can now use ProductCard
 - Feature 16 (Dynamic product detail pages) is next critical priority for the `/products/[handle]` route
 - ProductCard imports `StoreProduct` type from `@medusajs/types`
+
+## 2026-01-20 - Feature 16: Dynamic product detail pages generated at build time
+
+**Status:** Complete
+
+**Work done:**
+- Created `src/pages/products/[handle].astro`
+- Implemented `getStaticPaths()` to generate all product pages at build time
+  - Fetches all products via `listProducts({ limit: 100 })`
+  - Maps products to params/props for static generation
+- Fetches individual product data and passes to template
+- Handles 404 for non-existent products via redirect
+- Displays:
+  - Product image with eager loading and high fetchpriority (LCP optimization)
+  - Product title as h1
+  - Formatted price from first variant
+  - Product description rendered as HTML
+  - Placeholder showing variant ID (for future AddToCart integration)
+- Uses BaseLayout with dynamic title/description
+
+**Verification:**
+- `pnpm run lint` - 0 errors, 0 warnings
+- `pnpm run test` - no tests to run (expected)
+
+**Notes for next person:**
+- Feature 17 (Product detail page shows full info) builds on this - add variant selector, etc.
+- Feature 23 (AddToCart component) is next critical priority - replaces the variant ID placeholder
+- Feature 14 (Product listing page) can now link to these detail pages
+- Feature 13 (Homepage) can use ProductCard which links here
+- Image uses `loading="eager"` and `fetchpriority="high"` per Feature 37 requirements

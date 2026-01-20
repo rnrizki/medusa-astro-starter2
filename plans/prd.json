@@ -412,7 +412,7 @@
         "Include close button in cart header",
         "Animate sidebar open/close"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 26,
@@ -451,7 +451,7 @@
         "Display cart icon with count badge",
         "Open cart sidebar on click"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 29,

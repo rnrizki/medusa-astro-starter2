@@ -19,3 +19,27 @@
 - Feature 25 (Cart sidebar open/close) is verified as done in code but needs to be marked in PRD.
 - Feature 28 (CartButton in header) is Critical and missing - this should be prioritized to enable cart access.
 - The `.env` file is present but contains dummy keys. For full e2e testing, valid Medusa keys are needed.
+
+## 2026-01-20 - Feature 28: CartButton in header shows item count
+
+**Status:** Complete
+
+**Work done:**
+- Created `src/components/react/CartButton.tsx`
+- Subscribed to `$cartCount` store using `@nanostores/react`
+- Display cart icon (SVG shopping bag) with count badge
+- Badge shows count, caps at "99+" for large numbers
+- Opens cart sidebar on click via `openCart()` action
+- Added proper aria-label for accessibility
+- Also marked Feature 25 as passing in PRD (was verified but not marked)
+
+**Verification:**
+- `pnpm run lint` - 0 errors
+- `pnpm run test` - No tests configured (passes)
+
+**Notes for next person:**
+- Feature 28 is complete. CartButton can now be used in the Header component.
+- Feature 11 (Header) is the next logical feature to implement - it needs CartButton (now done).
+- Feature 13 (Homepage) and Feature 14 (Product listing) are also critical priorities.
+- The CartButton uses `client:visible` directive when included in Astro components.
+- The `.env` file still has dummy keys. For full e2e testing, valid Medusa keys are needed.

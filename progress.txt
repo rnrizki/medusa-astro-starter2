@@ -42,3 +42,23 @@
 - Feature 50 (Alt text), 51 (Focus states), 52 (Color contrast) are high priority accessibility tasks.
 - Feature 56 (API error handling) is high priority error-handling.
 - Feature 8 and 9 are marked false but may be implemented - verify if time permits.
+
+## 2026-01-20 - Feature 56: API errors handled gracefully in React components
+
+**Status:** Complete
+
+**Work done:**
+- Added `error` state to `apps/storefront/src/components/react/Cart.tsx`.
+- Updated `handleUpdateQuantity` to set error message on failure instead of only logging.
+- Added dismissible error banner in Cart UI after header.
+- Verified other components (AddToCart, CheckoutForm, PaymentForm, ShippingMethodSelector) already had proper error handling.
+
+**Verification:**
+- `pnpm run lint` - Passed (0 errors, 0 warnings).
+- No tests configured in project.
+
+**Notes for next person:**
+- Feature 56 (API error handling) is complete.
+- High priority remaining: Feature 50 (Alt text), 51 (Focus states), 52 (Color contrast) accessibility tasks.
+- High priority remaining: Feature 58 (README), 61 (Cloudflare deployment config).
+- Feature 8 and 9 marked false but may be implemented - verify if time permits.

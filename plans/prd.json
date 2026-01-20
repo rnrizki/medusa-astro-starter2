@@ -809,7 +809,7 @@
         "User can retry failed actions",
         "Errors don't crash the page"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 57,

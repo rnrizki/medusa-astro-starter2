@@ -16,6 +16,7 @@ export default function Cart() {
   const [updatingItems, setUpdatingItems] = useState<Record<string, boolean>>(
     {},
   );
+  const [error, setError] = useState<string | null>(null);
 
   const handleUpdateQuantity = async (
     lineItemId: string,
@@ -23,6 +24,7 @@ export default function Cart() {
   ) => {
     if (!cart?.id) return;
 
+    setError(null);
     setUpdatingItems((prev) => ({ ...prev, [lineItemId]: true }));
     try {
       if (newQuantity === 0) {
@@ -42,6 +44,7 @@ export default function Cart() {
       }
     } catch (err) {
       console.error("Failed to update item", err);
+      setError("Failed to update item. Please try again.");
     } finally {
       setUpdatingItems((prev) => {
         const next = { ...prev };
@@ -122,6 +125,34 @@ export default function Cart() {
                       </button>
                     </div>
                   </div>
+
+                  {error && (
+                    <div className="mt-4 rounded-md bg-red-50 p-3">
+                      <div className="flex items-center justify-between">
+                        <p className="text-sm text-red-700">{error}</p>
+                        <button
+                          type="button"
+                          onClick={() => setError(null)}
+                          className="ml-2 text-red-500 hover:text-red-700"
+                          aria-label="Dismiss error"
+                        >
+                          <svg
+                            className="h-4 w-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M6 18L18 6M6 6l12 12"
+                            />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  )}
 
                   <div className="mt-8">
                     <div className="flow-root">

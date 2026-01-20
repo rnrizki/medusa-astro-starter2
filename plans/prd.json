@@ -478,7 +478,7 @@
         "Display line items summary",
         "Show subtotal, shipping, total"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 31,

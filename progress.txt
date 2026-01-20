@@ -76,3 +76,27 @@
 - Feature 46 (Open Graph meta tags) is the next logical SEO feature.
 - Feature 30 (Checkout page) remains HIGH priority.
 - Feature 12 (Footer) is still pending.
+
+## 2026-01-20 - Feature 30: Checkout page displays order summary
+
+**Status:** Complete
+
+**Work done:**
+- Created `src/pages/checkout.astro` with two-column layout.
+- Created `src/components/react/CheckoutSummary.tsx` Preact island.
+- CheckoutSummary displays: line items with images, variant info, quantities, prices.
+- Shows subtotal, shipping, tax, and total (shipping/tax show "Calculated at next step" when 0).
+- Empty cart state links to products page.
+- Loading state while cart initializes.
+- Placeholder for checkout form (Feature 31).
+
+**Verification:**
+- `pnpm run lint` - Success (0 errors, 0 warnings).
+- `pnpm run test` - No test tasks configured (passes vacuously).
+
+**Notes for next person:**
+- Feature 30 (Checkout page) is complete.
+- Feature 31 (Checkout form - shipping info) is the next logical step.
+- Feature 32 (Shipping method selection) follows.
+- Feature 12 (Footer) is still pending.
+- Feature 46 (Open Graph meta tags) is a good quick SEO win.

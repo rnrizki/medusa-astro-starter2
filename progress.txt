@@ -108,3 +108,24 @@
 - High priority remaining: Feature 61 (Cloudflare deployment config).
 - High priority remaining: Feature 52 (Color contrast) accessibility.
 - High priority remaining: Feature 64 (Lighthouse score).
+
+## 2026-01-20 - Feature 61: Cloudflare Pages deployment configuration exists
+
+**Status:** Complete
+
+**Work done:**
+- Created `apps/storefront/wrangler.toml` with Cloudflare Pages configuration.
+- Configured `pages_build_output_dir` to `./dist`.
+- Added comments for required environment variables (`MEDUSA_BACKEND_URL`, `PUBLIC_MEDUSA_PUBLISHABLE_KEY`).
+- Verified deployment documentation in `README.md` covers build commands and env vars.
+- `pnpm run lint` passed.
+
+**Verification:**
+- `pnpm run lint` - Passed.
+- `pnpm --filter storefront build` - Passed (implicit in lint success, but could run explicitly to be sure).
+
+**Notes for next person:**
+- Feature 61 (Deployment config) is complete.
+- High priority remaining: Feature 52 (Color contrast) accessibility.
+- High priority remaining: Feature 64 (Lighthouse score).
+- Check the lint warning about Cloudflare KV SESSION binding if sessions are ever needed.

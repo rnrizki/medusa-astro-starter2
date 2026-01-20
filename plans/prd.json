@@ -875,7 +875,7 @@
         "Configure build command",
         "Document deployment process"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 62,

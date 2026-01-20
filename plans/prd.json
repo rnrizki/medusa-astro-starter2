@@ -134,7 +134,7 @@
         "Set output to static",
         "Configure image service for Cloudflare"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 6,

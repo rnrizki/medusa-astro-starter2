@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
+    "@astrojs/cloudflare": "^12.6.12",
     "@astrojs/react": "^4.3.1",
     "@astrojs/tailwind": "^6.0.2",
     "@medusajs/js-sdk": "^2.12.5",

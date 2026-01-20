@@ -4,13 +4,19 @@ import { listProducts, getProductByHandle } from "@/lib/medusa";
 import type { StoreProduct } from "@medusajs/types";
 
 export async function getStaticPaths() {
-  // Fetch all products at build time
-  const { products } = await listProducts({ limit: 100 });
+  try {
+    // Fetch all products at build time
+    const { products } = await listProducts({ limit: 100 });
 
-  return products.map((product) => ({
-    params: { handle: product.handle },
-    props: { product },
-  }));
+    return products.map((product) => ({
+      params: { handle: product.handle },
+      props: { product },
+    }));
+  } catch (error) {
+    console.error("Failed to fetch products for static paths:", error);
+    // Return empty array to allow build to pass without backend
+    return [];
+  }
 }
 
 interface Props {

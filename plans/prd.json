@@ -685,7 +685,7 @@
         "Product pages use product thumbnail",
         "Verify with social media debugger"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 47,

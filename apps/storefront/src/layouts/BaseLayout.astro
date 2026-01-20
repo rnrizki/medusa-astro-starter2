@@ -8,10 +8,13 @@ interface Props {
   title?: string;
   description?: string;
   preloadImage?: string;
+  image?: string;
 }
 
-const { title = 'Storefront', description = 'A fast MedusaJS storefront', preloadImage } = Astro.props;
+const { title = 'Storefront', description = 'A fast MedusaJS storefront', preloadImage, image } = Astro.props;
 const currentPath = Astro.url.pathname;
+const canonicalURL = new URL(currentPath, Astro.site || Astro.url.origin).href;
+const ogImage = image || '/og-default.png';
 ---
 
 <!doctype html>
@@ -21,6 +24,21 @@ const currentPath = Astro.url.pathname;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
     {preloadImage && (
       <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />
     )}

@@ -19,3 +19,26 @@
 - Feature 46 (Open Graph meta tags) is a high priority SEO task.
 - Feature 12 (Footer) is still pending.
 - Feature 8 and 9 are marked as false in PRD but seem implemented. Double check them if you have time.
+
+## 2026-01-20 - Feature 46: Open Graph meta tags present on all pages
+
+**Status:** Complete
+
+**Work done:**
+- Updated `apps/storefront/src/layouts/BaseLayout.astro` to include OG meta tags.
+- Added `image` prop to BaseLayout for og:image.
+- Included og:type, og:url, og:title, og:description, og:image.
+- Also added Twitter card meta tags (summary_large_image).
+- Updated `apps/storefront/src/pages/products/[handle].astro` to pass product thumbnail as image.
+- Updated `apps/storefront/src/pages/collections/[handle].astro` to pass first product thumbnail as image.
+
+**Verification:**
+- `pnpm run lint` - Passed (0 errors).
+- `pnpm --filter storefront build` - Passed.
+
+**Notes for next person:**
+- Feature 46 (Open Graph meta tags) is complete.
+- Feature 12 (Footer) is still medium priority pending.
+- Feature 50 (Alt text), 51 (Focus states), 52 (Color contrast) are high priority accessibility tasks.
+- Feature 56 (API error handling) is high priority error-handling.
+- Feature 8 and 9 are marked false but may be implemented - verify if time permits.

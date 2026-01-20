@@ -41,9 +41,10 @@ if (!collection) {
 
 const title = `${collection.title} | Storefront`;
 const description = (collection.metadata?.description as string) || `Browse products in ${collection.title}`;
+const collectionImage = products[0]?.thumbnail || undefined;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} image={collectionImage}>
   <section class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
     <!-- Breadcrumb -->
     <nav class="mb-6 text-sm">

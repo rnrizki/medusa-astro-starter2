@@ -162,7 +162,7 @@
         "Include PUBLIC_MEDUSA_PUBLISHABLE_KEY for client-side",
         "Document each variable with comments"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 8,

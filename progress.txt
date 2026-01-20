@@ -55,3 +55,28 @@
 - Feature 5 (Cloudflare adapter) is also critical priority
 - The SDK is ready to use in Astro pages at build time via the helper functions
 - For client-side usage, import directly and use `client:visible` or `client:idle` directives
+
+## 2026-01-20 - Feature 7: Environment variables template exists with all required vars
+
+**Status:** Complete
+
+**Work done:**
+- Created `/apps/storefront/.env.example` with all required environment variables
+- Documented each variable with clear comments explaining its purpose
+- Included both server-side and client-side (PUBLIC_ prefixed) variables:
+  - MEDUSA_BACKEND_URL: Server-side backend URL
+  - PUBLIC_MEDUSA_BACKEND_URL: Client-side backend URL
+  - MEDUSA_PUBLISHABLE_KEY: Server-side publishable API key
+  - PUBLIC_MEDUSA_PUBLISHABLE_KEY: Client-side publishable API key
+- Added instructions for obtaining the publishable key from Medusa Admin
+
+**Verification:**
+- `pnpm run lint` - 0 errors, 0 warnings
+- `pnpm run test` - no tests to run (expected)
+
+**Notes for next person:**
+- Feature 5 (Cloudflare adapter) is next critical priority for deployment
+- Feature 10 (Base layout) exists but needs global styles import added
+- Feature 8 (TypeScript path aliases) was done as part of Feature 4
+- Feature 9 (Tailwind config) was done as part of Feature 4
+- Consider starting on Feature 13 (Homepage) which depends on layout

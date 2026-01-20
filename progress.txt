@@ -189,3 +189,22 @@
 - Feature 42 (Critical CSS) is High priority performance task.
 - Feature 52 (Color contrast) is High priority accessibility task.
 - Feature 64 (Lighthouse score) is High priority verification task.
+
+## 2026-01-20 - Feature 42: Critical CSS is inlined in document head
+
+**Status:** Complete
+
+**Work done:**
+- Added `<style is:inline>` block in `apps/storefront/src/layouts/BaseLayout.astro`.
+- Inlined critical above-fold CSS covering: reset/base styles, header, layout utilities, typography, hero section, buttons, responsive breakpoints, grid.
+- CSS is minified and under 3KB (well under 14KB budget).
+- Full Tailwind CSS continues to load for non-critical styles.
+
+**Verification:**
+- `pnpm run lint` - Passed (0 errors, 0 warnings).
+- `pnpm --filter storefront build` - Passed.
+
+**Notes for next person:**
+- Feature 42 (Critical CSS) is complete.
+- Remaining high priority: Feature 64 (Lighthouse score verification).
+- Medium priority: Feature 12 (Footer), Features 35-36 (Search), Features 47-49 (SEO), Features 53-54 (Accessibility), Feature 57 (Empty states), Features 59-60 (DX), Feature 62 (Cache headers).

@@ -634,7 +634,7 @@
         "Defer non-critical CSS loading",
         "Keep inlined CSS under 14KB"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 43,

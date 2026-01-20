@@ -425,7 +425,7 @@
         "Update cart store with new data",
         "Handle quantity of 0 as remove"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 27,
@@ -438,7 +438,7 @@
         "Update cart store with new data",
         "Show confirmation or undo option"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 28,

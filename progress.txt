@@ -246,3 +246,26 @@
 - Feature 18 (Multiple variants) is HIGH priority - only first variant used currently.
 - Feature 26 (Cart quantity update) and Feature 27 (Cart item removal) are HIGH priority.
 - The `.env` file still has dummy keys. For full e2e testing, valid Medusa keys are needed.
+
+## 2026-01-20 - Feature 26 & 27: Cart item quantity updates and removal
+
+**Status:** Complete
+
+**Work done:**
+- Updated `src/components/react/Cart.tsx` to include quantity controls (+/- buttons) and a Remove button.
+- Implemented `handleUpdateQuantity` to call SDK `updateLineItem`.
+- Implemented logic to remove item when quantity is 0 or Remove button is clicked (using `removeLineItem`).
+- Added `updatingItems` state to track loading status per item (showing spinner).
+- Re-fetches the cart after removal to ensure state consistency with Medusa v2 SDK.
+- Updated PRD to mark Features 26 and 27 as passing.
+
+**Verification:**
+- `pnpm run lint` - 0 errors.
+- `pnpm --filter storefront build` - Success (build passed).
+
+**Notes for next person:**
+- Features 26 and 27 are complete. Cart is now fully functional (Add, Update, Remove, Persist).
+- Feature 30 (Checkout) is the next logical step (High priority).
+- Feature 18 (Multiple variants) is still High priority and pending.
+- Feature 12 (Footer) is Medium priority.
+- Feature 40 (Client directives) is Critical and needs final verification.

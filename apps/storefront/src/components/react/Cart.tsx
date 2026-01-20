@@ -1,10 +1,59 @@
+import { useState } from "react";
 import { useStore } from "@nanostores/react";
-import { $cart, $cartOpen, $cartTotal, closeCart } from "@/lib/stores/cart";
+import {
+  $cart,
+  $cartOpen,
+  $cartTotal,
+  closeCart,
+  setCart,
+} from "@/lib/stores/cart";
+import { updateLineItem, removeLineItem, getCart } from "@/lib/medusa";
 
 export default function Cart() {
   const cart = useStore($cart);
   const isOpen = useStore($cartOpen);
   const cartTotal = useStore($cartTotal);
+  const [updatingItems, setUpdatingItems] = useState<Record<string, boolean>>(
+    {},
+  );
+
+  const handleUpdateQuantity = async (
+    lineItemId: string,
+    newQuantity: number,
+  ) => {
+    if (!cart?.id) return;
+
+    setUpdatingItems((prev) => ({ ...prev, [lineItemId]: true }));
+    try {
+      if (newQuantity === 0) {
+        await removeLineItem(cart.id, lineItemId);
+        // Re-fetch cart to ensure we have the latest state (delete might not return cart directly in types)
+        const { cart: updatedCart } = await getCart(cart.id);
+        setCart(updatedCart);
+      } else {
+        const { cart: updatedCart } = await updateLineItem(
+          cart.id,
+          lineItemId,
+          {
+            quantity: newQuantity,
+          },
+        );
+        setCart(updatedCart);
+      }
+    } catch (err) {
+      console.error("Failed to update item", err);
+    } finally {
+      setUpdatingItems((prev) => {
+        const next = { ...prev };
+        delete next[lineItemId];
+        return next;
+      });
+    }
+  };
+
+  const handleRemoveItem = (lineItemId: string) => {
+    handleUpdateQuantity(lineItemId, 0);
+  };
 
   // Helper to format currency
   const formatMoney = (amount: number, currencyCode: string) => {
@@ -142,18 +191,78 @@ export default function Cart() {
                                   </p>
                                 </div>
                                 <div className="flex flex-1 items-end justify-between text-sm">
-                                  <p className="text-gray-500">
-                                    Qty {item.quantity}
-                                  </p>
+                                  <div className="flex items-center gap-2">
+                                    <label
+                                      htmlFor={`quantity-${item.id}`}
+                                      className="sr-only"
+                                    >
+                                      Quantity
+                                    </label>
+                                    <div className="flex items-center rounded border border-gray-200">
+                                      <button
+                                        type="button"
+                                        className="px-2 py-1 text-gray-600 hover:text-indigo-600 disabled:opacity-50"
+                                        disabled={
+                                          updatingItems[item.id] ||
+                                          item.quantity <= 1
+                                        }
+                                        onClick={() =>
+                                          handleUpdateQuantity(
+                                            item.id,
+                                            item.quantity - 1,
+                                          )
+                                        }
+                                      >
+                                        -
+                                      </button>
+                                      <span className="w-8 text-center text-gray-900">
+                                        {updatingItems[item.id] ? (
+                                          <svg
+                                            className="mx-auto h-4 w-4 animate-spin text-indigo-600"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                          >
+                                            <circle
+                                              className="opacity-25"
+                                              cx="12"
+                                              cy="12"
+                                              r="10"
+                                              stroke="currentColor"
+                                              strokeWidth="4"
+                                            ></circle>
+                                            <path
+                                              className="opacity-75"
+                                              fill="currentColor"
+                                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                            ></path>
+                                          </svg>
+                                        ) : (
+                                          item.quantity
+                                        )}
+                                      </span>
+                                      <button
+                                        type="button"
+                                        className="px-2 py-1 text-gray-600 hover:text-indigo-600 disabled:opacity-50"
+                                        disabled={updatingItems[item.id]}
+                                        onClick={() =>
+                                          handleUpdateQuantity(
+                                            item.id,
+                                            item.quantity + 1,
+                                          )
+                                        }
+                                      >
+                                        +
+                                      </button>
+                                    </div>
+                                  </div>
 
                                   <div className="flex">
-                                    {/* Remove button placeholder - Feature 27 */}
                                     <button
                                       type="button"
-                                      className="font-medium text-indigo-600 hover:text-indigo-500"
-                                      onClick={() => {
-                                        /* TODO: Implement remove */
-                                      }}
+                                      className="font-medium text-indigo-600 hover:text-indigo-500 disabled:opacity-50"
+                                      onClick={() => handleRemoveItem(item.id)}
+                                      disabled={updatingItems[item.id]}
                                     >
                                       Remove
                                     </button>

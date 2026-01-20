@@ -229,7 +229,7 @@
         "Include copyright text",
         "Use semantic footer element"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 13,

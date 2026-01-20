@@ -4,6 +4,7 @@ import Cart from '@/components/react/Cart';
 import CartInitializer from '@/components/react/CartInitializer';
 import CartAnnouncer from '@/components/react/CartAnnouncer';
 import Header from '@/components/astro/Header.astro';
+import Footer from '@/components/astro/Footer.astro';
 
 interface Props {
   title?: string;
@@ -89,13 +90,14 @@ const ogImage = image || '/og-default.png';
     )}
     <title>{title}</title>
   </head>
-  <body class="min-h-screen bg-white text-gray-900">
+  <body class="min-h-screen bg-white text-gray-900 flex flex-col">
     <CartInitializer client:load />
     <CartAnnouncer client:idle />
     <Header currentPath={currentPath} />
-    <main>
+    <main class="flex-grow">
       <slot />
     </main>
+    <Footer />
     <Cart client:idle />
   </body>
 </html>

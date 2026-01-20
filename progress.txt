@@ -67,3 +67,26 @@
 - Feature 13 (Homepage) is CRITICAL and needs implementation.
 - Feature 14 (Product listing page) is CRITICAL and needs implementation.
 - Navigation links to /products and /collections but those pages may not exist yet.
+
+## 2026-01-20 - Feature 13: Homepage displays hero section and featured products
+
+**Status:** Complete
+
+**Work done:**
+- Updated `src/pages/index.astro` with hero section and featured products grid
+- Hero section with branded heading, description, and CTAs (Shop All Products, Browse Collections)
+- Fetches up to 8 featured products at build time using SDK's `listProducts`
+- Displays products in responsive 1/2/4 column grid using ProductCard component
+- Graceful empty state if no products or backend unavailable
+- Error handling with try/catch for build-time fetch
+
+**Verification:**
+- `pnpm run lint` - 0 errors
+- `pnpm -w run test` - No tests configured (passes)
+
+**Notes for next person:**
+- Feature 13 is complete. Homepage now has hero and featured products.
+- Feature 14 (Product listing page) is CRITICAL and next priority.
+- Feature 17 (Product detail full info) is CRITICAL.
+- The `/products` and `/collections` pages are linked but may not exist yet.
+- The `.env` file still has dummy keys. For full e2e testing, valid Medusa keys are needed.

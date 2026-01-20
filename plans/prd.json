@@ -148,7 +148,7 @@
         "Read MEDUSA_PUBLISHABLE_KEY from environment",
         "Export typed helper functions for products, collections, cart"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 7,

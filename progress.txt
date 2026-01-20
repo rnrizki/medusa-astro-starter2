@@ -26,3 +26,32 @@
 - Feature 5 (Cloudflare adapter) is next priority if staying on storefront-setup
 - Feature 6 (MedusaJS SDK client) is also critical priority
 - Consider installing @medusajs/js-sdk for feature 6
+
+## 2026-01-20 - Feature 6: MedusaJS SDK client configured with environment variables
+
+**Status:** Complete
+
+**Work done:**
+- Installed `@medusajs/js-sdk` (v2.12.5) in storefront
+- Created `src/lib/medusa.ts` with SDK initialization
+- Configured environment variable reading for both server-side and client-side contexts
+  - MEDUSA_BACKEND_URL / PUBLIC_MEDUSA_BACKEND_URL for backend URL
+  - MEDUSA_PUBLISHABLE_KEY / PUBLIC_MEDUSA_PUBLISHABLE_KEY for API key
+- Exported typed helper functions:
+  - Products: `listProducts`, `getProduct`, `getProductByHandle`
+  - Collections: `listCollections`, `getCollection`, `getCollectionByHandle`, `getProductsByCollection`
+  - Regions: `listRegions`, `getRegion`
+  - Cart: `createCart`, `getCart`, `updateCart`, `addToCart`, `updateLineItem`, `removeLineItem`, `completeCart`
+  - Fulfillment: `listShippingOptions`, `addShippingMethod`
+  - Payment: `listPaymentProviders`
+- JWT token storage configured: memory for server-side, localStorage for client-side
+
+**Verification:**
+- `pnpm run lint` - 0 errors, 0 warnings
+- `pnpm run test` - no tests to run (expected)
+
+**Notes for next person:**
+- Feature 7 (Environment variables template) is next - create `.env.example` in `/apps/storefront`
+- Feature 5 (Cloudflare adapter) is also critical priority
+- The SDK is ready to use in Astro pages at build time via the helper functions
+- For client-side usage, import directly and use `client:visible` or `client:idle` directives

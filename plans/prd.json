@@ -771,7 +771,7 @@
         "Can close with Escape key",
         "Focus returns to trigger on close"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 54,

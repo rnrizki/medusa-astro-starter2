@@ -1,4 +1,4 @@
-import { useState } from "preact/hooks";
+import { useState, useEffect, useRef, useCallback } from "preact/hooks";
 import { useStore } from "@nanostores/preact";
 import {
   $cart,
@@ -9,6 +9,10 @@ import {
 } from "@/lib/stores/cart";
 import { updateLineItem, removeLineItem, getCart } from "@/lib/medusa";
 
+// Focusable element selector for focus trapping
+const FOCUSABLE_SELECTOR =
+  'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
 export default function Cart() {
   const cart = useStore($cart);
   const isOpen = useStore($cartOpen);
@@ -17,6 +21,66 @@ export default function Cart() {
     {},
   );
   const [error, setError] = useState<string | null>(null);
+  const sidebarRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+  // Handle Escape key to close cart
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        closeCart();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
+
+  // Focus trap: keep focus within the cart when open
+  const handleKeyDownFocusTrap = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key !== "Tab" || !sidebarRef.current) return;
+
+      const focusableElements =
+        sidebarRef.current.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR);
+      if (focusableElements.length === 0) return;
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      // Shift+Tab on first element -> go to last
+      if (e.shiftKey && document.activeElement === firstElement) {
+        e.preventDefault();
+        lastElement.focus();
+      }
+      // Tab on last element -> go to first
+      else if (!e.shiftKey && document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement.focus();
+      }
+    },
+    [sidebarRef],
+  );
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    document.addEventListener("keydown", handleKeyDownFocusTrap);
+    return () => document.removeEventListener("keydown", handleKeyDownFocusTrap);
+  }, [isOpen, handleKeyDownFocusTrap]);
+
+  // Move focus to close button when cart opens
+  useEffect(() => {
+    if (isOpen && closeButtonRef.current) {
+      // Small delay to ensure the sidebar is visible
+      setTimeout(() => {
+        closeButtonRef.current?.focus();
+      }, 100);
+    }
+  }, [isOpen]);
 
   const handleUpdateQuantity = async (
     lineItemId: string,
@@ -86,6 +150,7 @@ export default function Cart() {
           <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
             {/* Sidebar panel */}
             <div
+              ref={sidebarRef}
               className={`pointer-events-auto w-screen max-w-md transform transition duration-500 ease-in-out sm:duration-700 ${
                 isOpen ? "translate-x-0" : "translate-x-full"
               }`}
@@ -102,6 +167,7 @@ export default function Cart() {
                     </h2>
                     <div className="ml-3 flex h-7 items-center">
                       <button
+                        ref={closeButtonRef}
                         type="button"
                         className="-m-2 rounded-md p-2 text-gray-400 hover:text-gray-500"
                         onClick={closeCart}

@@ -36,6 +36,11 @@ export const $cart = atom<StoreCart | null>(null);
 export const $cartOpen = atom<boolean>(false);
 
 /**
+ * The element that triggered opening the cart (for returning focus on close)
+ */
+export const $cartTrigger = atom<HTMLElement | null>(null);
+
+/**
  * Whether cart is being loaded from localStorage
  */
 export const $cartLoading = atom<boolean>(false);
@@ -94,16 +99,29 @@ export function setCart(cart: StoreCart | null) {
 
 /**
  * Open the cart sidebar
+ * @param trigger - The element that triggered opening (for returning focus on close)
  */
-export function openCart() {
+export function openCart(trigger?: HTMLElement | null) {
+  if (trigger) {
+    $cartTrigger.set(trigger);
+  }
   $cartOpen.set(true);
 }
 
 /**
- * Close the cart sidebar
+ * Close the cart sidebar and return focus to trigger element
  */
 export function closeCart() {
+  const trigger = $cartTrigger.get();
   $cartOpen.set(false);
+  // Return focus to trigger element after sidebar closes
+  if (trigger) {
+    // Use setTimeout to ensure focus happens after animations
+    setTimeout(() => {
+      trigger.focus();
+    }, 0);
+    $cartTrigger.set(null);
+  }
 }
 
 /**

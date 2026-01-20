@@ -229,3 +229,27 @@
 - Feature 47 (Sitemap) is complete.
 - Remaining high priority: Feature 64 (Lighthouse score verification).
 - Medium priority remaining: Feature 12 (Footer), Features 35-36 (Search), Feature 48 (robots.txt), Feature 49 (Canonical URLs), Features 53-54 (Accessibility), Feature 57 (Empty states), Features 59-60 (DX), Feature 62 (Cache headers).
+## 2026-01-20 - Feature 53: Cart sidebar is keyboard accessible
+
+**Status:** Complete
+
+**Work done:**
+- Added `$cartTrigger` atom in `apps/storefront/src/lib/stores/cart.ts` to track trigger element.
+- Updated `openCart()` to accept optional trigger element for focus return.
+- Updated `closeCart()` to return focus to trigger element after closing.
+- Updated `apps/storefront/src/components/react/CartButton.tsx` to pass itself as trigger.
+- Updated `apps/storefront/src/components/react/Cart.tsx`:
+  - Added Escape key listener to close cart.
+  - Implemented focus trapping using Tab key handling.
+  - Focus moves to close button when cart opens.
+  - Focus returns to CartButton when cart closes.
+
+**Verification:**
+- `pnpm run lint` - Passed (0 errors, 0 warnings).
+- `pnpm run test` - No tests configured.
+
+**Notes for next person:**
+- Feature 53 (Cart keyboard accessibility) is complete.
+- Remaining high priority: Feature 64 (Lighthouse score verification).
+- Medium priority remaining: Feature 12 (Footer), Features 35-36 (Search), Feature 48 (robots.txt), Feature 49 (Canonical URLs), Feature 54 (Screen reader), Feature 57 (Empty states), Features 59-60 (DX), Feature 62 (Cache headers).
+

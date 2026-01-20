@@ -4,10 +4,14 @@ import { $cartCount, openCart } from "@/lib/stores/cart";
 export default function CartButton() {
   const cartCount = useStore($cartCount);
 
+  const handleClick = (e: MouseEvent) => {
+    openCart(e.currentTarget as HTMLElement);
+  };
+
   return (
     <button
       type="button"
-      onClick={openCart}
+      onClick={handleClick}
       className="group relative flex items-center rounded-md p-2 text-gray-700 hover:text-gray-900"
       aria-label={`Shopping cart${cartCount > 0 ? `, ${cartCount} items` : ""}`}
     >

@@ -202,7 +202,7 @@
         "Include slot for page content",
         "Add global styles import"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 11,

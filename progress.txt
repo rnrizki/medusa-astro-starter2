@@ -80,3 +80,27 @@
 - Feature 8 (TypeScript path aliases) was done as part of Feature 4
 - Feature 9 (Tailwind config) was done as part of Feature 4
 - Consider starting on Feature 13 (Homepage) which depends on layout
+
+## 2026-01-20 - Feature 10: Base layout component with HTML structure and critical CSS
+
+**Status:** Complete
+
+**Work done:**
+- Added global styles import (`@/styles/global.css`) to `BaseLayout.astro`
+- Removed duplicate import from `index.astro` (now handled by layout)
+- BaseLayout now properly includes:
+  - HTML5 doctype
+  - Viewport meta for mobile
+  - Description meta tag
+  - Slot for page content
+  - Global Tailwind styles
+
+**Verification:**
+- `pnpm run lint` - 0 errors, 0 warnings
+- `pnpm run test` - no tests to run (expected)
+
+**Notes for next person:**
+- Feature 11 (Header component) is next priority for layout category
+- Feature 13 (Homepage) can now be implemented with the layout ready
+- Feature 5 (Cloudflare adapter) is still pending for deployment readiness
+- Consider Feature 22 (Cart state with Nanostores) as it enables cart features

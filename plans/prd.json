@@ -545,7 +545,7 @@
         "Call products API with search query",
         "Display search results dropdown"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 36,
@@ -558,7 +558,7 @@
         "Close search on result click",
         "Handle no results state"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 37,
@@ -783,7 +783,7 @@
         "Announce when item added to cart",
         "Use proper ARIA roles and labels"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 55,

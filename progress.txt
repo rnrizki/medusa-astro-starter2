@@ -270,3 +270,24 @@
 
 **Notes for next person:**
 - Feature 54 (Screen reader) is complete.
+
+## 2026-01-20 - Feature 35 & 36: Search component
+**Status:** Complete
+
+**Work done:**
+- Created `apps/storefront/src/components/react/Search.tsx`.
+- Implemented real-time search with debouncing (300ms).
+- Uses `listProducts` SDK function with `q` parameter.
+- Displays results in a dropdown with thumbnail, title, and description.
+- Implemented click-outside to close.
+- Integrated into `apps/storefront/src/components/astro/Header.astro` with `client:idle`.
+- Handles loading state and empty results state.
+
+**Verification:**
+- `pnpm run lint` - Passed.
+- `pnpm --filter storefront build` - Passed (compilation success).
+
+**Notes for next person:**
+- Feature 35 & 36 (Search) are complete.
+- Remaining high priority: Feature 64 (Lighthouse score verification).
+- Medium priority remaining: Feature 12 (Footer), Feature 48 (robots.txt), Feature 49 (Canonical URLs), Feature 57 (Empty states), Features 59-60 (DX), Feature 62 (Cache headers).

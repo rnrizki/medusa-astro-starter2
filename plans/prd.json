@@ -673,7 +673,7 @@
         "Product pages use product title",
         "Collection pages use collection title"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 46,

@@ -51,3 +51,28 @@
 - Feature 30 (Checkout page) remains HIGH priority next step.
 - Feature 12 (Footer) is still pending.
 - Feature 45 (SEO meta titles) and Feature 46 (Open Graph) are good quick wins.
+
+## 2026-01-20 - Feature 45: Pages have unique meta titles and descriptions
+
+**Status:** Complete
+
+**Work done:**
+- Verified BaseLayout already accepts title and description props.
+- Verified all pages pass unique titles and descriptions:
+  - Homepage: "Home | Storefront"
+  - Products index: "Products | Storefront"
+  - Collections index: "Collections | Storefront"
+  - Collection detail: "{collection.title} | Storefront"
+  - 404: "Page Not Found | Storefront"
+- Fixed product detail page to include branded suffix: "{product.title} | Storefront".
+- All pages now have consistent branded titles and unique descriptions.
+
+**Verification:**
+- `pnpm run lint` - Success (0 errors, 0 warnings).
+- `pnpm run test` - No test tasks configured (passes vacuously).
+
+**Notes for next person:**
+- Feature 45 (SEO meta titles) is complete.
+- Feature 46 (Open Graph meta tags) is the next logical SEO feature.
+- Feature 30 (Checkout page) remains HIGH priority.
+- Feature 12 (Footer) is still pending.

@@ -113,3 +113,29 @@
 - Feature 20 (Collections listing) and Feature 21 (Collection pages) are HIGH priority.
 - The `/collections` page is linked from header but doesn't exist yet.
 - The `.env` file still has dummy keys. For full e2e testing, valid Medusa keys are needed.
+
+## 2026-01-20 - Feature 17: Product detail page shows full product information
+
+**Status:** Complete
+
+**Work done:**
+- Verified existing implementation in `src/pages/products/[handle].astro` meets all requirements:
+  - Large product image with `loading="eager"` and `fetchpriority="high"`
+  - Product title as h1 (`<h1 class="text-3xl font-bold text-gray-900">`)
+  - Formatted price display with currency formatting
+  - Product description rendered with `set:html` for HTML support
+  - AddToCart React island included with `client:visible` directive
+- Removed outdated "Placeholder" comment in code
+- Updated PRD to mark Feature 17 as passing
+
+**Verification:**
+- `pnpm run lint` - 0 errors
+- `pnpm run test` - No tests configured (passes)
+
+**Notes for next person:**
+- Feature 17 is complete. Product detail pages now show full information with AddToCart.
+- Feature 18 (Multiple variants) is HIGH priority - current implementation only uses first variant.
+- Feature 19 (Product image gallery) is MEDIUM priority.
+- Feature 20 (Collections listing) and Feature 21 (Collection pages) are HIGH priority.
+- The `/collections` page is linked from header but doesn't exist yet.
+- The `.env` file still has dummy keys. For full e2e testing, valid Medusa keys are needed.

@@ -300,7 +300,7 @@
         "Render product description (handle HTML)",
         "Include AddToCart React island"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 18,

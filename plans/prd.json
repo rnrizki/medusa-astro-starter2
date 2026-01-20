@@ -464,7 +464,7 @@
         "Initialize cart store with retrieved data",
         "Handle expired/invalid cart IDs gracefully"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 30,

@@ -1,6 +1,7 @@
 ---
 import '@/styles/global.css';
 import Cart from '@/components/react/Cart';
+import CartInitializer from '@/components/react/CartInitializer';
 import Header from '@/components/astro/Header.astro';
 
 interface Props {
@@ -22,6 +23,7 @@ const currentPath = Astro.url.pathname;
     <title>{title}</title>
   </head>
   <body class="min-h-screen bg-white text-gray-900">
+    <CartInitializer client:load />
     <Header currentPath={currentPath} />
     <main>
       <slot />

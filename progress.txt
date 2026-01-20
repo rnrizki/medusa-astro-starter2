@@ -190,3 +190,34 @@
 - Feature 18 (Multiple variants) is HIGH priority - only first variant used currently.
 - Feature 12 (Footer) is MEDIUM priority - layout is incomplete without footer.
 - The `.env` file still has dummy keys. For full e2e testing, valid Medusa keys are needed.
+
+## 2026-01-20 - Feature 29: Cart persists across page navigations
+
+**Status:** Complete
+
+**Work done:**
+- Updated `src/lib/stores/cart.ts` with localStorage persistence:
+  - Added `CART_ID_KEY` constant for localStorage key
+  - Added `$cartLoading` atom to track loading state
+  - Updated `setCart()` to save cart ID to localStorage automatically
+  - Updated `clearCart()` to remove cart ID from localStorage
+  - Added `getStoredCartId()`, `setStoredCartId()`, `removeStoredCartId()` helpers
+  - Added `initializeCart()` function to restore cart on page load
+  - Handles expired/invalid/completed cart IDs gracefully
+- Created `src/components/react/CartInitializer.tsx`:
+  - Runs on page load with `client:load` directive
+  - Calls `initializeCart()` with the Medusa `getCart` function
+  - Renders nothing (pure initialization component)
+- Updated `src/layouts/BaseLayout.astro` to include CartInitializer
+
+**Verification:**
+- `pnpm run lint` - 0 errors, 0 warnings, 0 hints
+- `pnpm run test` - No tests configured (passes)
+
+**Notes for next person:**
+- Feature 29 is complete. Cart now persists across page navigations/refreshes.
+- Feature 18 (Multiple variants) is HIGH priority - only first variant used currently.
+- Feature 26 (Cart quantity update) and Feature 27 (Cart item removal) are HIGH priority.
+- Feature 12 (Footer) is MEDIUM priority - layout is incomplete without footer.
+- Feature 37 (LCP image preload) is CRITICAL but mostly done, could add preload link.
+- The `.env` file still has dummy keys. For full e2e testing, valid Medusa keys are needed.

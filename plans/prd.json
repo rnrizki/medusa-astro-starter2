@@ -709,7 +709,7 @@
         "Allow all crawlers",
         "Reference sitemap location"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 49,

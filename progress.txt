@@ -58,3 +58,23 @@
 - Feature 49 is complete.
 - Feature 48 (Robots.txt) and Feature 62 (Cache headers) are next logical steps for SEO/Performance.
 - Feature 64 (Lighthouse) depends on these.
+
+## 2026-01-20 - Feature 48: Robots.txt allows search engine crawling
+
+**Status:** Complete
+
+**Work done:**
+- Created `apps/storefront/src/pages/robots.txt.ts` as dynamic Astro endpoint.
+- Allows all crawlers (`User-agent: *`, `Allow: /`).
+- References sitemap at `{site}/sitemap-index.xml` using configured site URL.
+- Used dynamic endpoint to ensure sitemap URL matches deployment domain.
+
+**Verification:**
+- `pnpm run lint` - Passed (0 errors, 7 warnings).
+- `pnpm run test` - Passed (no tests configured).
+- `pnpm --filter storefront build` - Passed; robots.txt generated correctly.
+
+**Notes for next person:**
+- Feature 48 is complete.
+- Remaining incomplete features: Feature 57 (Empty states), Feature 60 (TypeScript types), Feature 62 (Cache headers), Feature 64 (Lighthouse).
+- Feature 62 (Cache headers) is a good next step for performance optimization.

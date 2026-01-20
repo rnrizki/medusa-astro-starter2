@@ -144,7 +144,7 @@ export default function CheckoutForm() {
         <div className="rounded-lg border border-green-200 bg-green-50 p-6">
           <div className="flex items-center gap-2">
             <svg
-              className="h-5 w-5 text-green-600"
+              className="h-5 w-5 text-green-700"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -226,7 +226,7 @@ export default function CheckoutForm() {
             className={inputClasses("email")}
           />
           {errors.email && (
-            <p className="mt-1 text-sm text-red-600">{errors.email}</p>
+            <p className="mt-1 text-sm text-red-700">{errors.email}</p>
           )}
         </div>
       </div>
@@ -251,7 +251,7 @@ export default function CheckoutForm() {
               className={inputClasses("firstName")}
             />
             {errors.firstName && (
-              <p className="mt-1 text-sm text-red-600">{errors.firstName}</p>
+              <p className="mt-1 text-sm text-red-700">{errors.firstName}</p>
             )}
           </div>
 
@@ -272,7 +272,7 @@ export default function CheckoutForm() {
               className={inputClasses("lastName")}
             />
             {errors.lastName && (
-              <p className="mt-1 text-sm text-red-600">{errors.lastName}</p>
+              <p className="mt-1 text-sm text-red-700">{errors.lastName}</p>
             )}
           </div>
 
@@ -293,7 +293,7 @@ export default function CheckoutForm() {
               className={inputClasses("address")}
             />
             {errors.address && (
-              <p className="mt-1 text-sm text-red-600">{errors.address}</p>
+              <p className="mt-1 text-sm text-red-700">{errors.address}</p>
             )}
           </div>
 
@@ -332,7 +332,7 @@ export default function CheckoutForm() {
               className={inputClasses("city")}
             />
             {errors.city && (
-              <p className="mt-1 text-sm text-red-600">{errors.city}</p>
+              <p className="mt-1 text-sm text-red-700">{errors.city}</p>
             )}
           </div>
 
@@ -353,7 +353,7 @@ export default function CheckoutForm() {
               className={inputClasses("postalCode")}
             />
             {errors.postalCode && (
-              <p className="mt-1 text-sm text-red-600">{errors.postalCode}</p>
+              <p className="mt-1 text-sm text-red-700">{errors.postalCode}</p>
             )}
           </div>
 
@@ -380,7 +380,7 @@ export default function CheckoutForm() {
               <option value="au">Australia</option>
             </select>
             {errors.country && (
-              <p className="mt-1 text-sm text-red-600">{errors.country}</p>
+              <p className="mt-1 text-sm text-red-700">{errors.country}</p>
             )}
           </div>
 

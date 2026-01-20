@@ -245,7 +245,7 @@ export default function ShippingMethodSelector({ onComplete }: Props) {
       </div>
 
       {selectedOption && !isSaving && (
-        <div className="flex items-center gap-2 pt-2 text-sm text-green-600">
+        <div className="flex items-center gap-2 pt-2 text-sm text-green-700">
           <svg
             className="h-4 w-4"
             fill="none"

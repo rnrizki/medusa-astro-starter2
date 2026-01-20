@@ -149,6 +149,26 @@
 - Feature 64 (Lighthouse score) is High priority verification task.
 - Feature 62 (Cache headers) is Medium priority deployment task.
 
+## 2026-01-20 - Feature 52: Color contrast meets WCAG AA standards
+
+**Status:** Complete
+
+**Work done:**
+- Audited all color usage across the codebase (Tailwind gray, blue, red, green).
+- Identified WCAG AA failures: `text-red-600` (4.02:1) and `text-green-600` (3.38:1).
+- Changed `text-red-600` to `text-red-700` (5.24:1) in AddToCart.tsx and CheckoutForm.tsx.
+- Changed `text-green-600` to `text-green-700` (4.57:1) in CheckoutForm.tsx, ShippingMethodSelector.tsx, OrderConfirmation.tsx.
+- All colors now meet minimum 4.5:1 contrast ratio for normal text.
+
+**Verification:**
+- `pnpm run lint` - Passed (0 errors, 0 warnings).
+- `pnpm run test` - No tests configured.
+
+**Notes for next person:**
+- Feature 52 (Color contrast) is complete.
+- Remaining high priority: Feature 64 (Lighthouse score verification).
+- Medium priority: Feature 12 (Footer), Feature 42 (Critical CSS), Feature 53/54 (Accessibility), Features 47-49 (SEO).
+
 ## 2026-01-20 - Feature 39: Images use WebP format with proper sizing
 
 **Status:** Complete

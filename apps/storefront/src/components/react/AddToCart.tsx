@@ -86,7 +86,7 @@ export default function AddToCart({ variantId }: AddToCartProps) {
           "Add to Cart"
         )}
       </button>
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      {error && <p className="text-sm text-red-700">{error}</p>}
     </div>
   );
 }

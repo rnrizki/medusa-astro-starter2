@@ -83,7 +83,7 @@ export default function OrderConfirmation() {
         <div className="border-b border-gray-200 pb-8 text-center">
           <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
             <svg
-              className="h-6 w-6 text-green-600"
+              className="h-6 w-6 text-green-700"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"

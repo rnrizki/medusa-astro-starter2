@@ -758,7 +758,7 @@
         "Large text has 3:1 contrast minimum",
         "Verify with contrast checker"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 53,

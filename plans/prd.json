@@ -888,7 +888,7 @@
         "Set appropriate cache for HTML pages",
         "Document caching strategy"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 63,

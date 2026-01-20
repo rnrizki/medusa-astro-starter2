@@ -78,3 +78,24 @@
 - Feature 48 is complete.
 - Remaining incomplete features: Feature 57 (Empty states), Feature 60 (TypeScript types), Feature 62 (Cache headers), Feature 64 (Lighthouse).
 - Feature 62 (Cache headers) is a good next step for performance optimization.
+
+## 2026-01-20 - Feature 62: Cache headers configured for static assets
+
+**Status:** Complete
+
+**Work done:**
+- Created `apps/storefront/public/_headers` for Cloudflare Pages.
+- Set immutable cache (1 year) for `/_astro/*` hashed assets.
+- Set must-revalidate cache for HTML pages and root.
+- Set 1-hour cache for sitemap and robots.txt.
+- Set 1-day cache for images in public folder.
+
+**Verification:**
+- `pnpm run lint` - Passed (0 errors, 7 warnings).
+- `pnpm run test` - Passed (no tests configured).
+
+**Notes for next person:**
+- Feature 62 is complete. Cloudflare Pages will now serve optimized cache headers.
+- Remaining incomplete features: Feature 57 (Empty states), Feature 60 (TypeScript types), Feature 64 (Lighthouse).
+- Feature 64 (Lighthouse) is high priority but requires manual verification.
+- Feature 57 (Empty states) is a good next implementation task.

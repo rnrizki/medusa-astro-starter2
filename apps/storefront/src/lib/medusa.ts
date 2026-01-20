@@ -164,6 +164,30 @@ export async function getRegion(
   return medusa.store.region.retrieve(id, query);
 }
 
+/**
+ * Cache for the default region (first region from the backend)
+ */
+let cachedDefaultRegion: { id: string; currency_code: string } | null = null;
+
+/**
+ * Get the default region (first available region)
+ * Caches the result to avoid repeated API calls
+ */
+export async function getDefaultRegion() {
+  if (cachedDefaultRegion) {
+    return cachedDefaultRegion;
+  }
+
+  const { regions } = await listRegions({ limit: 1 });
+  if (regions.length > 0) {
+    cachedDefaultRegion = {
+      id: regions[0].id,
+      currency_code: regions[0].currency_code,
+    };
+  }
+  return cachedDefaultRegion;
+}
+
 // =============================================================================
 // Cart Helpers
 // =============================================================================

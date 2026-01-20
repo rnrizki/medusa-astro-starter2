@@ -1,13 +1,15 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ProductCard from '@/components/astro/ProductCard.astro';
-import { listProducts } from '@/lib/medusa';
+import { listProducts, getDefaultRegion } from '@/lib/medusa';
 
 // Fetch featured products at build time
 let products: Awaited<ReturnType<typeof listProducts>>['products'] = [];
 try {
+  const region = await getDefaultRegion();
   const response = await listProducts({
     limit: 8,
+    region_id: region?.id,
     fields: 'id,title,handle,thumbnail,variants.id,variants.calculated_price',
   });
   products = response.products;

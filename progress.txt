@@ -221,3 +221,28 @@
 - Feature 12 (Footer) is MEDIUM priority - layout is incomplete without footer.
 - Feature 37 (LCP image preload) is CRITICAL but mostly done, could add preload link.
 - The `.env` file still has dummy keys. For full e2e testing, valid Medusa keys are needed.
+
+## 2026-01-20 - Feature 37: LCP image loads with high priority
+
+**Status:** Complete
+
+**Work done:**
+- Updated `src/layouts/BaseLayout.astro`:
+  - Added optional `preloadImage` prop for LCP optimization
+  - Added `<link rel="preload" as="image" fetchpriority="high">` when preloadImage provided
+- Updated `src/pages/products/[handle].astro`:
+  - Pass `mainImage` as `preloadImage` to BaseLayout for preloading
+  - Product detail images already had `loading="eager"` and `fetchpriority="high"`
+- Also marked Feature 38 (Below-fold images lazy load) as passing:
+  - ProductCard already has `loading="lazy"` and `decoding="async"` on images
+
+**Verification:**
+- `pnpm run lint` - 0 errors, 0 warnings, 0 hints
+- `pnpm run test` - No tests configured (passes)
+
+**Notes for next person:**
+- Feature 37 and 38 are complete. LCP images are preloaded and below-fold images lazy load.
+- Feature 40 (React islands use client:visible) is CRITICAL - needs verification.
+- Feature 18 (Multiple variants) is HIGH priority - only first variant used currently.
+- Feature 26 (Cart quantity update) and Feature 27 (Cart item removal) are HIGH priority.
+- The `.env` file still has dummy keys. For full e2e testing, valid Medusa keys are needed.

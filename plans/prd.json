@@ -571,7 +571,7 @@
         "Preload LCP image in document head",
         "Verify LCP is under 1.5s in Lighthouse"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 38,
@@ -583,7 +583,7 @@
         "Add decoding='async' to non-critical images",
         "Verify images don't block initial render"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 39,

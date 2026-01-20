@@ -216,7 +216,7 @@
         "Include CartButton React island for cart count",
         "Use semantic HTML (header, nav elements)"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 12,

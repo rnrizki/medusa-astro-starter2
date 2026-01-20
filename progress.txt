@@ -43,3 +43,27 @@
 - Feature 13 (Homepage) and Feature 14 (Product listing) are also critical priorities.
 - The CartButton uses `client:visible` directive when included in Astro components.
 - The `.env` file still has dummy keys. For full e2e testing, valid Medusa keys are needed.
+
+## 2026-01-20 - Feature 11: Header component with logo, navigation, and cart icon
+
+**Status:** Complete
+
+**Work done:**
+- Created `src/components/astro/Header.astro`
+- Added logo/site name ("Storefront") linking to home
+- Added navigation links to Products and Collections
+- Included CartButton React island with `client:visible` directive
+- Used semantic HTML (`<header>`, `<nav>`)
+- Navigation highlights current path (active state)
+- Sticky header with border
+- Updated BaseLayout to include Header and wrapped slot in `<main>` tag
+
+**Verification:**
+- `pnpm run lint` - 0 errors
+
+**Notes for next person:**
+- Feature 11 is complete. Header now appears on all pages using BaseLayout.
+- Feature 12 (Footer) is next logical layout component (MEDIUM priority).
+- Feature 13 (Homepage) is CRITICAL and needs implementation.
+- Feature 14 (Product listing page) is CRITICAL and needs implementation.
+- Navigation links to /products and /collections but those pages may not exist yet.

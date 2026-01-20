@@ -175,7 +175,7 @@
         "Ensure Astro and React types are included",
         "Verify IDE autocompletion works"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 9,
@@ -188,7 +188,7 @@
         "Disable unused core plugins for smaller CSS",
         "Create src/styles/global.css with Tailwind directives"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 10,
@@ -836,7 +836,7 @@
         "Document available scripts",
         "Include deployment instructions"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 59,

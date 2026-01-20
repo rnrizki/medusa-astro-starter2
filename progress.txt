@@ -85,3 +85,26 @@
 - High priority remaining: Feature 52 (Color contrast) accessibility.
 - High priority remaining: Feature 58 (README), 61 (Cloudflare deployment config).
 - Feature 8 and 9 marked false but may be implemented - verify if time permits.
+
+## 2026-01-20 - Feature 58: README documents setup and development workflow
+
+**Status:** Complete
+
+**Work done:**
+- Created root `README.md` with comprehensive documentation.
+- Documented prerequisites (Node.js, pnpm, PostgreSQL).
+- Added setup steps (install, env vars, seed).
+- Documented development workflow (`pnpm dev` and specific commands).
+- Added deployment instructions for Cloudflare Pages and Backend.
+- Verified Feature 8 (TypeScript) and Feature 9 (Tailwind) as complete (marked in PRD).
+
+**Verification:**
+- `pnpm run lint` - Passed.
+- `pnpm run test` - Passed (empty, as expected).
+
+**Notes for next person:**
+- Feature 58 (README) is complete.
+- Feature 8 (TypeScript) and 9 (Tailwind) are complete.
+- High priority remaining: Feature 61 (Cloudflare deployment config).
+- High priority remaining: Feature 52 (Color contrast) accessibility.
+- High priority remaining: Feature 64 (Lighthouse score).

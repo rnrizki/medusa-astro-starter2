@@ -721,7 +721,7 @@
         "Use current page URL as canonical",
         "Handle trailing slashes consistently"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 50,

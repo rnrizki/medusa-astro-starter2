@@ -40,3 +40,21 @@
 - Please run `pnpm run lint` before committing.
 - Remaining High Priority: Feature 64 (Lighthouse).
 - Remaining Medium Priority prerequisites: Feature 48 (Robots.txt), Feature 49 (Canonical URLs), Feature 62 (Cache headers).
+
+## 2026-01-20 - Feature 49: Canonical URLs set on all pages
+
+**Status:** Complete
+
+**Work done:**
+- Updated `apps/storefront/src/layouts/BaseLayout.astro` to include `<link rel="canonical" ... />`.
+- Configured `trailingSlash: 'never'` in `apps/storefront/astro.config.mjs` to ensure consistent URL generation.
+- Verified that `canonicalURL` is correctly derived from `Astro.url.pathname` and `Astro.site`.
+
+**Verification:**
+- `pnpm run lint` - Passed (0 errors).
+- `pnpm run test` - Skipped (no tests configured).
+
+**Notes for next person:**
+- Feature 49 is complete.
+- Feature 48 (Robots.txt) and Feature 62 (Cache headers) are next logical steps for SEO/Performance.
+- Feature 64 (Lighthouse) depends on these.

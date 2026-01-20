@@ -85,6 +85,8 @@ const ogImage = image || '/og-default.png';
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
+    <link rel="canonical" href={canonicalURL} />
+
     {preloadImage && (
       <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />
     )}

@@ -8,6 +8,7 @@ import { visualizer } from "rollup-plugin-visualizer";
 export default defineConfig({
   site: process.env.SITE_URL || "https://example.com",
   output: "static",
+  trailingSlash: "never",
   prefetch: {
     defaultStrategy: "viewport",
   },

@@ -4,6 +4,7 @@ import {
   $cart,
   $cartOpen,
   $cartTotal,
+  $cartAnnouncement,
   closeCart,
   setCart,
 } from "@/lib/stores/cart";
@@ -69,7 +70,8 @@ export default function Cart() {
     if (!isOpen) return;
 
     document.addEventListener("keydown", handleKeyDownFocusTrap);
-    return () => document.removeEventListener("keydown", handleKeyDownFocusTrap);
+    return () =>
+      document.removeEventListener("keydown", handleKeyDownFocusTrap);
   }, [isOpen, handleKeyDownFocusTrap]);
 
   // Move focus to close button when cart opens
@@ -88,6 +90,10 @@ export default function Cart() {
   ) => {
     if (!cart?.id) return;
 
+    // Find item for announcement
+    const item = cart.items?.find((i) => i.id === lineItemId);
+    const itemTitle = item?.title || "Item";
+
     setError(null);
     setUpdatingItems((prev) => ({ ...prev, [lineItemId]: true }));
     try {
@@ -96,6 +102,7 @@ export default function Cart() {
         // Re-fetch cart to ensure we have the latest state (delete might not return cart directly in types)
         const { cart: updatedCart } = await getCart(cart.id);
         setCart(updatedCart);
+        $cartAnnouncement.set(`Removed ${itemTitle} from cart`);
       } else {
         const { cart: updatedCart } = await updateLineItem(
           cart.id,
@@ -105,6 +112,9 @@ export default function Cart() {
           },
         );
         setCart(updatedCart);
+        $cartAnnouncement.set(
+          `Updated quantity for ${itemTitle} to ${newQuantity}`,
+        );
       }
     } catch (err) {
       console.error("Failed to update item", err);
@@ -305,6 +315,7 @@ export default function Cart() {
                                           updatingItems[item.id] ||
                                           item.quantity <= 1
                                         }
+                                        aria-label={`Decrease quantity for ${item.title}`}
                                         onClick={() =>
                                           handleUpdateQuantity(
                                             item.id,
@@ -321,6 +332,7 @@ export default function Cart() {
                                             xmlns="http://www.w3.org/2000/svg"
                                             fill="none"
                                             viewBox="0 0 24 24"
+                                            aria-hidden="true"
                                           >
                                             <circle
                                               className="opacity-25"
@@ -344,6 +356,7 @@ export default function Cart() {
                                         type="button"
                                         className="rounded-r px-2 py-1 text-gray-600 hover:text-indigo-600 disabled:opacity-50"
                                         disabled={updatingItems[item.id]}
+                                        aria-label={`Increase quantity for ${item.title}`}
                                         onClick={() =>
                                           handleUpdateQuantity(
                                             item.id,
@@ -362,6 +375,7 @@ export default function Cart() {
                                       className="rounded font-medium text-indigo-600 hover:text-indigo-500 disabled:opacity-50"
                                       onClick={() => handleRemoveItem(item.id)}
                                       disabled={updatingItems[item.id]}
+                                      aria-label={`Remove ${item.title} from cart`}
                                     >
                                       Remove
                                     </button>

@@ -2,6 +2,7 @@
 import '@/styles/global.css';
 import Cart from '@/components/react/Cart';
 import CartInitializer from '@/components/react/CartInitializer';
+import CartAnnouncer from '@/components/react/CartAnnouncer';
 import Header from '@/components/astro/Header.astro';
 
 interface Props {
@@ -90,6 +91,7 @@ const ogImage = image || '/og-default.png';
   </head>
   <body class="min-h-screen bg-white text-gray-900">
     <CartInitializer client:load />
+    <CartAnnouncer client:idle />
     <Header currentPath={currentPath} />
     <main>
       <slot />

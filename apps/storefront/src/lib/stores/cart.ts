@@ -41,6 +41,11 @@ export const $cartOpen = atom<boolean>(false);
 export const $cartTrigger = atom<HTMLElement | null>(null);
 
 /**
+ * Message for screen readers to announce cart updates
+ */
+export const $cartAnnouncement = atom<string | null>(null);
+
+/**
  * Whether cart is being loaded from localStorage
  */
 export const $cartLoading = atom<boolean>(false);
@@ -196,7 +201,7 @@ export function removeStoredCartId(): void {
  * @returns The loaded cart or null if no cart exists/is invalid
  */
 export async function initializeCart(
-  fetchCart: (cartId: string) => Promise<{ cart: StoreCart } | null>
+  fetchCart: (cartId: string) => Promise<{ cart: StoreCart } | null>,
 ): Promise<StoreCart | null> {
   const storedCartId = getStoredCartId();
 

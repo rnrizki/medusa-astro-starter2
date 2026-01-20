@@ -106,7 +106,10 @@ export default function ProductActions({ product }: ProductActionsProps) {
       {/* Add to Cart */}
       <div>
         {selectedVariant ? (
-          <AddToCart variantId={selectedVariant.id} />
+          <AddToCart
+            variantId={selectedVariant.id}
+            productTitle={product.title}
+          />
         ) : (
           <button
             disabled

@@ -1,13 +1,14 @@
 import { useState } from "preact/hooks";
 import { useStore } from "@nanostores/preact";
-import { $cart, setCart, openCart } from "@/lib/stores/cart";
+import { $cart, setCart, openCart, $cartAnnouncement } from "@/lib/stores/cart";
 import { addToCart, createCart } from "@/lib/medusa";
 
 interface AddToCartProps {
   variantId: string;
+  productTitle?: string;
 }
 
-export default function AddToCart({ variantId }: AddToCartProps) {
+export default function AddToCart({ variantId, productTitle }: AddToCartProps) {
   const cart = useStore($cart);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -37,7 +38,13 @@ export default function AddToCart({ variantId }: AddToCartProps) {
       // 3. Update store
       setCart(updatedCart);
 
-      // 4. Open cart sidebar (optional but good UX)
+      // 4. Announce to screen reader
+      const message = productTitle
+        ? `Added ${productTitle} to cart`
+        : "Added item to cart";
+      $cartAnnouncement.set(message);
+
+      // 5. Open cart sidebar (optional but good UX)
       openCart();
     } catch (err) {
       console.error("Error adding to cart:", err);

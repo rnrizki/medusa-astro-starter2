@@ -45,8 +45,7 @@ export const medusa = new Medusa({
   publishableKey: getPublishableKey(),
   auth: {
     type: "jwt",
-    jwtTokenStorageMethod:
-      typeof window === "undefined" ? "memory" : "local",
+    jwtTokenStorageMethod: typeof window === "undefined" ? "memory" : "local",
   },
 });
 
@@ -67,7 +66,7 @@ export const getMedusaBackendUrl = getBackendUrl;
  * List all products with optional filters
  */
 export async function listProducts(
-  query?: Parameters<typeof medusa.store.product.list>[0]
+  query?: Parameters<typeof medusa.store.product.list>[0],
 ) {
   return medusa.store.product.list(query);
 }
@@ -77,7 +76,7 @@ export async function listProducts(
  */
 export async function getProduct(
   id: string,
-  query?: Parameters<typeof medusa.store.product.retrieve>[1]
+  query?: Parameters<typeof medusa.store.product.retrieve>[1],
 ) {
   return medusa.store.product.retrieve(id, query);
 }
@@ -102,7 +101,7 @@ export async function getProductByHandle(handle: string) {
  * List all collections with optional filters
  */
 export async function listCollections(
-  query?: Parameters<typeof medusa.store.collection.list>[0]
+  query?: Parameters<typeof medusa.store.collection.list>[0],
 ) {
   return medusa.store.collection.list(query);
 }
@@ -112,7 +111,7 @@ export async function listCollections(
  */
 export async function getCollection(
   id: string,
-  query?: Parameters<typeof medusa.store.collection.retrieve>[1]
+  query?: Parameters<typeof medusa.store.collection.retrieve>[1],
 ) {
   return medusa.store.collection.retrieve(id, query);
 }
@@ -133,7 +132,7 @@ export async function getCollectionByHandle(handle: string) {
  */
 export async function getProductsByCollection(
   collectionId: string,
-  query?: Parameters<typeof medusa.store.product.list>[0]
+  query?: Parameters<typeof medusa.store.product.list>[0],
 ) {
   return medusa.store.product.list({
     ...query,
@@ -149,7 +148,7 @@ export async function getProductsByCollection(
  * List all regions
  */
 export async function listRegions(
-  query?: Parameters<typeof medusa.store.region.list>[0]
+  query?: Parameters<typeof medusa.store.region.list>[0],
 ) {
   return medusa.store.region.list(query);
 }
@@ -159,7 +158,7 @@ export async function listRegions(
  */
 export async function getRegion(
   id: string,
-  query?: Parameters<typeof medusa.store.region.retrieve>[1]
+  query?: Parameters<typeof medusa.store.region.retrieve>[1],
 ) {
   return medusa.store.region.retrieve(id, query);
 }
@@ -197,7 +196,7 @@ export async function getDefaultRegion() {
  */
 export async function createCart(
   body: Parameters<typeof medusa.store.cart.create>[0],
-  query?: Parameters<typeof medusa.store.cart.create>[1]
+  query?: Parameters<typeof medusa.store.cart.create>[1],
 ) {
   return medusa.store.cart.create(body, query);
 }
@@ -207,7 +206,7 @@ export async function createCart(
  */
 export async function getCart(
   id: string,
-  query?: Parameters<typeof medusa.store.cart.retrieve>[1]
+  query?: Parameters<typeof medusa.store.cart.retrieve>[1],
 ) {
   return medusa.store.cart.retrieve(id, query);
 }
@@ -218,7 +217,7 @@ export async function getCart(
 export async function updateCart(
   id: string,
   body: Parameters<typeof medusa.store.cart.update>[1],
-  query?: Parameters<typeof medusa.store.cart.update>[2]
+  query?: Parameters<typeof medusa.store.cart.update>[2],
 ) {
   return medusa.store.cart.update(id, body, query);
 }
@@ -229,7 +228,7 @@ export async function updateCart(
 export async function addToCart(
   cartId: string,
   body: Parameters<typeof medusa.store.cart.createLineItem>[1],
-  query?: Parameters<typeof medusa.store.cart.createLineItem>[2]
+  query?: Parameters<typeof medusa.store.cart.createLineItem>[2],
 ) {
   return medusa.store.cart.createLineItem(cartId, body, query);
 }
@@ -241,7 +240,7 @@ export async function updateLineItem(
   cartId: string,
   lineItemId: string,
   body: Parameters<typeof medusa.store.cart.updateLineItem>[2],
-  query?: Parameters<typeof medusa.store.cart.updateLineItem>[3]
+  query?: Parameters<typeof medusa.store.cart.updateLineItem>[3],
 ) {
   return medusa.store.cart.updateLineItem(cartId, lineItemId, body, query);
 }
@@ -252,7 +251,7 @@ export async function updateLineItem(
 export async function removeLineItem(
   cartId: string,
   lineItemId: string,
-  query?: Parameters<typeof medusa.store.cart.deleteLineItem>[2]
+  query?: Parameters<typeof medusa.store.cart.deleteLineItem>[2],
 ) {
   return medusa.store.cart.deleteLineItem(cartId, lineItemId, query);
 }
@@ -262,7 +261,7 @@ export async function removeLineItem(
  */
 export async function completeCart(
   cartId: string,
-  query?: Parameters<typeof medusa.store.cart.complete>[1]
+  query?: Parameters<typeof medusa.store.cart.complete>[1],
 ) {
   return medusa.store.cart.complete(cartId, query);
 }
@@ -275,7 +274,7 @@ export async function completeCart(
  * List shipping options for a cart
  */
 export async function listShippingOptions(
-  query?: Parameters<typeof medusa.store.fulfillment.listCartOptions>[0]
+  query?: Parameters<typeof medusa.store.fulfillment.listCartOptions>[0],
 ) {
   return medusa.store.fulfillment.listCartOptions(query);
 }
@@ -286,7 +285,7 @@ export async function listShippingOptions(
 export async function addShippingMethod(
   cartId: string,
   body: Parameters<typeof medusa.store.cart.addShippingMethod>[1],
-  query?: Parameters<typeof medusa.store.cart.addShippingMethod>[2]
+  query?: Parameters<typeof medusa.store.cart.addShippingMethod>[2],
 ) {
   return medusa.store.cart.addShippingMethod(cartId, body, query);
 }
@@ -299,7 +298,18 @@ export async function addShippingMethod(
  * List payment providers for a region
  */
 export async function listPaymentProviders(
-  query?: Parameters<typeof medusa.store.payment.listPaymentProviders>[0]
+  query?: Parameters<typeof medusa.store.payment.listPaymentProviders>[0],
 ) {
   return medusa.store.payment.listPaymentProviders(query);
+}
+
+/**
+ * Initiate a payment session for a cart
+ */
+export async function initiatePaymentSession(
+  cart: any,
+  body: Parameters<typeof medusa.store.payment.initiatePaymentSession>[1],
+  query?: Parameters<typeof medusa.store.payment.initiatePaymentSession>[2],
+) {
+  return medusa.store.payment.initiatePaymentSession(cart, body, query);
 }

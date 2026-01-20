@@ -154,3 +154,24 @@
 - Feature 32 (Shipping method selection) follows.
 - Feature 12 (Footer) is still pending.
 - Feature 46 (Open Graph meta tags) is a good quick SEO win.
+
+## 2026-01-20 - Feature 33: Checkout redirects to payment provider
+
+**Status:** Complete
+
+**Work done:**
+- Updated `src/lib/medusa.ts` to include `initiatePaymentSession` and `listPaymentProviders` for Medusa V2.
+- Created `src/components/react/PaymentForm.tsx` to handle payment selection and completion.
+- Implemented logic to list providers, select one (initiating session), and complete the cart.
+- Integrated `PaymentForm` into `CheckoutForm`: appears after shipping method is selected.
+- Handles redirects to `/order/[id]` on success.
+
+**Verification:**
+- `pnpm run lint` - Success.
+- `pnpm run test` - Success (no tests).
+
+**Notes for next person:**
+- Feature 33 (Payment provider) is complete.
+- Feature 34 (Order confirmation page) is the NEXT step. Currently, checkout redirects to `/order/[id]` which creates a 404.
+- Feature 18 (Product variants) is CRITICAL. Currently, the product page only selects the first variant.
+- Feature 46 (Open Graph) is High Priority.

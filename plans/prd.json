@@ -517,7 +517,7 @@
         "Handle payment session creation",
         "Redirect to payment page or show inline form"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 34,

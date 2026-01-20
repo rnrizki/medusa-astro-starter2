@@ -3,6 +3,7 @@ import { useStore } from "@nanostores/preact";
 import { $cart, setCart } from "@/lib/stores/cart";
 import { updateCart } from "@/lib/medusa";
 import ShippingMethodSelector from "./ShippingMethodSelector";
+import PaymentForm from "./PaymentForm";
 
 interface FormData {
   email: string;
@@ -43,6 +44,7 @@ export default function CheckoutForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [apiError, setApiError] = useState<string | null>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isShippingSelected, setIsShippingSelected] = useState(false);
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -82,7 +84,7 @@ export default function CheckoutForm() {
   };
 
   const handleChange = (
-    e: Event & { currentTarget: HTMLInputElement | HTMLSelectElement }
+    e: Event & { currentTarget: HTMLInputElement | HTMLSelectElement },
   ) => {
     const { name, value } = e.currentTarget;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -166,18 +168,32 @@ export default function CheckoutForm() {
             <br />
             {formData.city}, {formData.postalCode}
           </p>
-          <button
-            type="button"
-            onClick={() => setIsSubmitted(false)}
-            className="mt-4 text-sm font-medium text-green-700 hover:text-green-600"
-          >
-            Edit shipping address
-          </button>
+          {!isShippingSelected && (
+            <button
+              type="button"
+              onClick={() => setIsSubmitted(false)}
+              className="mt-4 text-sm font-medium text-green-700 hover:text-green-600"
+            >
+              Edit shipping address
+            </button>
+          )}
         </div>
 
         <div className="mt-6">
-          <ShippingMethodSelector />
+          <ShippingMethodSelector
+            onComplete={() => setIsShippingSelected(true)}
+          />
         </div>
+
+        {isShippingSelected && (
+          <div className="mt-6 border-t border-gray-200 pt-6">
+            <PaymentForm
+              onComplete={(order) => {
+                window.location.href = `/order/${order.id}`;
+              }}
+            />
+          </div>
+        )}
       </>
     );
   }

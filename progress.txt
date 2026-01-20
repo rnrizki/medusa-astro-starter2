@@ -77,6 +77,33 @@
 - Feature 30 (Checkout page) remains HIGH priority.
 - Feature 12 (Footer) is still pending.
 
+## 2026-01-20 - Feature 31: Checkout form collects shipping information
+
+**Status:** Complete
+
+**Work done:**
+- Created `src/components/react/CheckoutForm.tsx` Preact island.
+- Form includes: email, first name, last name, address, apartment (optional), city, postal code, country dropdown, phone (optional).
+- Client-side validation for required fields with inline error messages.
+- Email format validation using regex.
+- Updates cart with shipping address via `updateCart` SDK function.
+- Loading state while saving with spinner animation.
+- Success state shows saved address with option to edit.
+- Error handling for API failures.
+- Updated `checkout.astro` to use CheckoutForm component.
+- Removed placeholder content from checkout page.
+
+**Verification:**
+- `pnpm run lint` - Success (0 errors, 0 warnings).
+- `pnpm run test` - No test tasks configured (passes vacuously).
+
+**Notes for next person:**
+- Feature 31 (Checkout form - shipping info) is complete.
+- Feature 32 (Shipping method selection) is the next logical step.
+- Feature 33 (Payment provider integration) follows.
+- Feature 12 (Footer) is still pending.
+- Feature 46 (Open Graph meta tags) is a good quick SEO win.
+
 ## 2026-01-20 - Feature 30: Checkout page displays order summary
 
 **Status:** Complete

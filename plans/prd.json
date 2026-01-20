@@ -491,7 +491,7 @@
         "Validate required fields",
         "Update cart with shipping address via SDK"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 32,

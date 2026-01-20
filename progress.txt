@@ -1,177 +1,24 @@
 
-## 2026-01-20 - Feature 32: Checkout form collects shipping method
+## 2026-01-20 - Feature 34: Order confirmation page displays after successful checkout
 
 **Status:** Complete
 
 **Work done:**
-- Created `src/components/react/ShippingMethodSelector.tsx` Preact island.
-- Fetches shipping options for the cart via `listShippingOptions` SDK function.
-- Displays available shipping methods with names and prices.
-- Radio button selection for choosing shipping method.
-- Updates cart with selected shipping method via `addShippingMethod` SDK.
-- Loading state while fetching options and saving selection.
-- Error handling for API failures with retry option.
-- Empty state when no shipping options available.
-- Visual feedback when shipping method is selected (checkmark, highlighted border).
-- Integrated into CheckoutForm - shows after shipping address is saved.
-
-**Verification:**
-- `pnpm run lint` - Success (0 errors, 0 warnings).
-- `pnpm run test` - No test tasks configured (passes vacuously).
-
-**Notes for next person:**
-- Feature 32 (Shipping method selection) is complete.
-- Feature 33 (Payment provider integration) is the next logical checkout step (medium priority).
-- Feature 34 (Order confirmation page) follows.
-- Feature 46 (Open Graph meta tags) is a good quick SEO win (high priority).
-- Feature 12 (Footer) is still pending (medium priority).
-
-## 2026-01-20 - Feature 41: Total JavaScript bundle under 50KB gzipped
-
-**Status:** Complete
-
-**Work done:**
-- Analyzed initial bundle size: ~76KB gzipped (React + Medusa SDK).
-- Migrated from React to Preact to reduce bundle size.
-- Replaced `@astrojs/react` with `@astrojs/preact`.
-- Replaced `@nanostores/react` with `@nanostores/preact`.
-- Updated `astro.config.mjs` to use `preact({ compat: true })`.
-- Updated `tsconfig.json` to alias `react` and `react-dom` to `preact/compat`.
-- Updated component imports to use `preact/hooks` and `@nanostores/preact`.
-- Verified new bundle size: ~38.6KB gzipped (< 50KB target).
-- Verified linting passes.
-- Updated PRD to reflect Tech Stack change (React -> Preact).
-- Also marked Features 1, 2, 3 (Monorepo), 26, 27 (Cart update), 44 (CLS), 63 (Build), 65 (E2E) as passed in PRD.
-
-**Verification:**
-- `pnpm --filter storefront build` - Success.
-- Bundle size analysis: Total ~39KB.
-- `pnpm run lint` - Success.
-
-**Notes for next person:**
-- Feature 41 (Performance optimization) is complete. The stack now uses Preact.
-- Feature 30 (Checkout page) is HIGH priority and the next logical step. It is currently missing.
-- Feature 31 & 32 (Checkout forms) follow Feature 30.
-- Feature 18 (Multiple variants) is still pending.
-- Feature 12 (Footer) is pending.
-- The `.env` file still has dummy keys.
-
-## 2026-01-20 - Feature 55: 404 page exists for unknown routes
-
-**Status:** Complete
-
-**Work done:**
-- Created `src/pages/404.astro` with friendly not found message.
-- Page uses BaseLayout for consistent site design.
-- Displays 404 error code and "Page not found" heading.
-- Includes "Go back home" button linking to `/`.
-- Includes "Browse products" link as secondary action.
-- Styling matches existing site design (Tailwind, blue-600 accent).
-
-**Verification:**
-- `pnpm run lint` - Success (0 errors, 0 warnings).
-- `pnpm run test` - No test tasks configured (passes vacuously).
-
-**Notes for next person:**
-- Feature 55 (404 page) is complete.
-- Feature 8 (TypeScript path aliases) appears already done (@ alias exists in tsconfig).
-- Feature 30 (Checkout page) remains HIGH priority next step.
-- Feature 12 (Footer) is still pending.
-- Feature 45 (SEO meta titles) and Feature 46 (Open Graph) are good quick wins.
-
-## 2026-01-20 - Feature 45: Pages have unique meta titles and descriptions
-
-**Status:** Complete
-
-**Work done:**
-- Verified BaseLayout already accepts title and description props.
-- Verified all pages pass unique titles and descriptions:
-  - Homepage: "Home | Storefront"
-  - Products index: "Products | Storefront"
-  - Collections index: "Collections | Storefront"
-  - Collection detail: "{collection.title} | Storefront"
-  - 404: "Page Not Found | Storefront"
-- Fixed product detail page to include branded suffix: "{product.title} | Storefront".
-- All pages now have consistent branded titles and unique descriptions.
-
-**Verification:**
-- `pnpm run lint` - Success (0 errors, 0 warnings).
-- `pnpm run test` - No test tasks configured (passes vacuously).
-
-**Notes for next person:**
-- Feature 45 (SEO meta titles) is complete.
-- Feature 46 (Open Graph meta tags) is the next logical SEO feature.
-- Feature 30 (Checkout page) remains HIGH priority.
-- Feature 12 (Footer) is still pending.
-
-## 2026-01-20 - Feature 31: Checkout form collects shipping information
-
-**Status:** Complete
-
-**Work done:**
-- Created `src/components/react/CheckoutForm.tsx` Preact island.
-- Form includes: email, first name, last name, address, apartment (optional), city, postal code, country dropdown, phone (optional).
-- Client-side validation for required fields with inline error messages.
-- Email format validation using regex.
-- Updates cart with shipping address via `updateCart` SDK function.
-- Loading state while saving with spinner animation.
-- Success state shows saved address with option to edit.
-- Error handling for API failures.
-- Updated `checkout.astro` to use CheckoutForm component.
-- Removed placeholder content from checkout page.
-
-**Verification:**
-- `pnpm run lint` - Success (0 errors, 0 warnings).
-- `pnpm run test` - No test tasks configured (passes vacuously).
-
-**Notes for next person:**
-- Feature 31 (Checkout form - shipping info) is complete.
-- Feature 32 (Shipping method selection) is the next logical step.
-- Feature 33 (Payment provider integration) follows.
-- Feature 12 (Footer) is still pending.
-- Feature 46 (Open Graph meta tags) is a good quick SEO win.
-
-## 2026-01-20 - Feature 30: Checkout page displays order summary
-
-**Status:** Complete
-
-**Work done:**
-- Created `src/pages/checkout.astro` with two-column layout.
-- Created `src/components/react/CheckoutSummary.tsx` Preact island.
-- CheckoutSummary displays: line items with images, variant info, quantities, prices.
-- Shows subtotal, shipping, tax, and total (shipping/tax show "Calculated at next step" when 0).
-- Empty cart state links to products page.
-- Loading state while cart initializes.
-- Placeholder for checkout form (Feature 31).
-
-**Verification:**
-- `pnpm run lint` - Success (0 errors, 0 warnings).
-- `pnpm run test` - No test tasks configured (passes vacuously).
-
-**Notes for next person:**
-- Feature 30 (Checkout page) is complete.
-- Feature 31 (Checkout form - shipping info) is the next logical step.
-- Feature 32 (Shipping method selection) follows.
-- Feature 12 (Footer) is still pending.
-- Feature 46 (Open Graph meta tags) is a good quick SEO win.
-
-## 2026-01-20 - Feature 33: Checkout redirects to payment provider
-
-**Status:** Complete
-
-**Work done:**
-- Updated `src/lib/medusa.ts` to include `initiatePaymentSession` and `listPaymentProviders` for Medusa V2.
-- Created `src/components/react/PaymentForm.tsx` to handle payment selection and completion.
-- Implemented logic to list providers, select one (initiating session), and complete the cart.
-- Integrated `PaymentForm` into `CheckoutForm`: appears after shipping method is selected.
-- Handles redirects to `/order/[id]` on success.
+- Created `src/components/react/OrderConfirmation.tsx` Preact island.
+- Implemented client-side fetching of order details using `retrieveOrder` SDK function.
+- Displays success message, order ID, email, shipping address, order items, and total.
+- Handles loading and error states.
+- Created `src/pages/order/index.astro` to host the confirmation component.
+- Updated `CheckoutForm` to redirect to `/order?id={id}` (using query params to support static hosting).
+- Added `retrieveOrder` helper to `src/lib/medusa.ts`.
+- Verified build passes and linting passes.
 
 **Verification:**
 - `pnpm run lint` - Success.
-- `pnpm run test` - Success (no tests).
+- `pnpm --filter storefront build` - Success (generated `/order/index.html`).
 
 **Notes for next person:**
-- Feature 33 (Payment provider) is complete.
-- Feature 34 (Order confirmation page) is the NEXT step. Currently, checkout redirects to `/order/[id]` which creates a 404.
-- Feature 18 (Product variants) is CRITICAL. Currently, the product page only selects the first variant.
-- Feature 46 (Open Graph) is High Priority.
+- Feature 34 (Order confirmation) is complete. The checkout flow is now end-to-end complete.
+- Feature 18 (Product variants) is CRITICAL. Currently, users can only buy the first variant. This should be the top priority.
+- Feature 46 (Open Graph meta tags) is a good quick SEO win.
+- Feature 12 (Footer) is still pending.

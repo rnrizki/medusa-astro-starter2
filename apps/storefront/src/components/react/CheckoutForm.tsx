@@ -189,7 +189,7 @@ export default function CheckoutForm() {
           <div className="mt-6 border-t border-gray-200 pt-6">
             <PaymentForm
               onComplete={(order) => {
-                window.location.href = `/order/${order.id}`;
+                window.location.href = `/order?id=${order.id}`;
               }}
             />
           </div>

@@ -531,7 +531,7 @@
         "Provide order ID for reference",
         "Clear cart after successful order"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 35,

@@ -313,3 +313,17 @@ export async function initiatePaymentSession(
 ) {
   return medusa.store.payment.initiatePaymentSession(cart, body, query);
 }
+
+// =============================================================================
+// Order Helpers
+// =============================================================================
+
+/**
+ * Retrieve an order by ID
+ */
+export async function retrieveOrder(
+  id: string,
+  query?: Parameters<typeof medusa.store.order.retrieve>[1],
+) {
+  return medusa.store.order.retrieve(id, query);
+}

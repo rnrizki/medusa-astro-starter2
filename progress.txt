@@ -1,0 +1,28 @@
+# Progress Log
+
+## 2026-01-20 - Feature 4: Astro project initialized with React and Tailwind
+
+**Status:** Complete
+
+**Work done:**
+- Created `/apps/storefront` directory structure
+- Added `package.json` with Astro 5.8, React 18.3, Tailwind 3.4 dependencies
+- Configured `astro.config.mjs` with static output, React and Tailwind integrations
+- Set up `tsconfig.json` with strict mode and `@/` path alias
+- Created `tailwind.config.mjs` with content paths for Astro files
+- Added `src/styles/global.css` with Tailwind directives
+- Created `src/layouts/BaseLayout.astro` as base template
+- Added `src/pages/index.astro` as homepage placeholder
+- Created sample `src/components/react/Counter.tsx` to verify React integration
+
+**Verification:**
+- `pnpm install` - success
+- `pnpm run lint` - 0 errors, 0 warnings
+- `pnpm run test` - no tests to run (expected)
+- `pnpm build` (storefront) - builds successfully, outputs to dist/
+
+**Notes for next person:**
+- Monorepo setup (features 1-3) was already complete when I started
+- Feature 5 (Cloudflare adapter) is next priority if staying on storefront-setup
+- Feature 6 (MedusaJS SDK client) is also critical priority
+- Consider installing @medusajs/js-sdk for feature 6
